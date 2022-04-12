@@ -12,6 +12,7 @@ public class Controll : MonoBehaviour
     public static Controll Instance;
     public string _state;
     [SerializeField] GameObject[] panels;
+    [SerializeField] GameObject confeti;
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -33,7 +34,7 @@ public class Controll : MonoBehaviour
         switch(_state)
         {          
             case ("Win"):
-
+                confeti.SetActive(true);
                 break;
             case ("Lose"):
 
@@ -56,7 +57,7 @@ public class Controll : MonoBehaviour
     public IEnumerator Win()
     {
         yield return new WaitForSeconds(2);
-        Set_state("Win");
+        Set_state("Win");        
     }  
 
     public IEnumerator Lose()

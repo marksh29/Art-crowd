@@ -1,19 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class Line : MonoBehaviour
 {
+    public static Line Instance;
     [SerializeField] List<GameObject> lineObj, gameObj;
-
-    [SerializeField] List<GameObject> lineCount;
+    [SerializeField] RectTransform rect;
+    [SerializeField] TextMeshPro countText;
     [SerializeField] GameObject prefab;
     [SerializeField] float spawnDistance;
     float dist;
     [SerializeField] bool lineOn;
+
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+
+    }
     void Start()
     {
-        
+        countText.text = gameObj.Count.ToString();
     }
     void Update()
     {                  
@@ -38,16 +45,16 @@ public class Line : MonoBehaviour
     {
         GameObject obj = Instantiate(prefab) as GameObject;
         obj.transform.position = Input.mousePosition;
-        obj.transform.parent = transform;
-        lineObj.Add(obj);
+        obj.transform.parent = rect.gameObject.transform;
+        lineObj.Add(obj);      
     }
     void SetPos()
     {
         int count = gameObj.Count > lineObj.Count ? lineObj.Count : gameObj.Count;
         for (int i = 0; i < count; i++)
         {
-            float xx = 0.5f / (GetComponent<RectTransform>().sizeDelta.x / 2);
-            float yy = 0.4f / (GetComponent<RectTransform>().sizeDelta.y / 2);
+            float xx = 0.5f / (rect.sizeDelta.x / 2);
+            float yy = 0.4f / (rect.sizeDelta.y / 2);
             Vector3 newPos = new Vector3(lineObj[i].GetComponent<RectTransform>().anchoredPosition.x * xx, 1, lineObj[i].GetComponent<RectTransform>().anchoredPosition.y * yy);
             gameObj[i].GetComponent<Player>().SetStarget(newPos);
             //gameObj[i].transform.localPosition = newPos;
@@ -56,7 +63,6 @@ public class Line : MonoBehaviour
     public void SetLine()
     {
         lineOn = true;
-
     }
     public void OffLine()
     {
@@ -70,5 +76,16 @@ public class Line : MonoBehaviour
     public void Off()
     {
         lineOn = false;
+    }
+
+    public void AddObj(GameObject obj)
+    {
+        gameObj.Add(obj);
+        countText.text = gameObj.Count.ToString();
+    }
+    public void RemoveObj(GameObject obj)
+    {
+        gameObj.Remove(obj);
+        countText.text = gameObj.Count.ToString();
     }
 }
