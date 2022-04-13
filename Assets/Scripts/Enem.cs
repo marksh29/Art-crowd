@@ -5,7 +5,6 @@ using UnityEngine;
 public class Enem : MonoBehaviour
 {
     public int life;
-    public MeshRenderer mesh;
 
     void Start()
     {
@@ -13,10 +12,13 @@ public class Enem : MonoBehaviour
     }
     public void Kill(int damage)
     {
+        GetComponent<Animator>().SetTrigger("hit");
         life -= damage;
         if(life <= 0)
         {
-            transform.parent.gameObject.GetComponent<Enemy>().RemoveCount(gameObject);
+            gameObject.tag = "Untagged";
+            transform.parent.gameObject.GetComponent<Enemy>().RemoveCount(gameObject);            
+            Destroy(gameObject, 1);
         }            
     }
 }

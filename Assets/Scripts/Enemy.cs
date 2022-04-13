@@ -13,7 +13,6 @@ public class Enemy : MonoBehaviour
     }
     public void RemoveCount(GameObject obj)
     {
-        Destroy(obj);
         count--;
         txt.text = count.ToString();
         if (count <= 0)

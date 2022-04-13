@@ -11,8 +11,8 @@ public class Line : MonoBehaviour
     [SerializeField] GameObject prefab;
     [SerializeField] float spawnDistance;
     float dist;
-    [SerializeField] bool lineOn;
-
+    [SerializeField] bool cleareLine, updatePosition;
+    bool lineOn;
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -22,22 +22,36 @@ public class Line : MonoBehaviour
     {
         countText.text = gameObj.Count.ToString();
     }
+    public void StartGame(string name)
+    {
+        for (int i = 0; i < gameObj.Count; i++)
+        {
+            gameObj[i].GetComponent<Player>().SetAnimation(name);
+        }
+    }
+
     void Update()
-    {                  
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            CleareLine();
+        }
         if (Input.GetMouseButton(0) && lineOn)
         {
             if (lineObj.Count > 0)
             {
                 dist = (lineObj[lineObj.Count - 1].transform.position - Input.mousePosition).sqrMagnitude;
             }
-            if (lineObj.Count == 0 || dist >= spawnDistance)
+            if (lineObj.Count < gameObj.Count && (lineObj.Count == 0 || dist >= spawnDistance))
             {
                 SpawnObj();
             }
         }
         if(Input.GetMouseButtonUp(0))
         {
-            OffLine();           
+            OffLine();
+            if (cleareLine)
+                CleareLine();
         }
     }
 
@@ -46,8 +60,19 @@ public class Line : MonoBehaviour
         GameObject obj = Instantiate(prefab) as GameObject;
         obj.transform.position = Input.mousePosition;
         obj.transform.parent = rect.gameObject.transform;
-        lineObj.Add(obj);      
+        lineObj.Add(obj);
+        if (updatePosition)
+            OffLine();
     }
+    void CleareLine()
+    {
+        for (int i = 0; i < lineObj.Count; i++)
+        {
+            Destroy(lineObj[i]);
+        }
+        lineObj.Clear();
+    }
+
     void SetPos()
     {
         int count = gameObj.Count > lineObj.Count ? lineObj.Count : gameObj.Count;
@@ -66,12 +91,7 @@ public class Line : MonoBehaviour
     }
     public void OffLine()
     {
-        SetPos();       
-        for (int i = 0; i < lineObj.Count; i++)
-        {
-            Destroy(lineObj[i]);
-        }
-        lineObj.Clear();
+        SetPos();     
     }
     public void Off()
     {
@@ -87,5 +107,7 @@ public class Line : MonoBehaviour
     {
         gameObj.Remove(obj);
         countText.text = gameObj.Count.ToString();
+        if (gameObj.Count <= 0)
+           PlayerControll.Instance.Lose();
     }
 }

@@ -35,6 +35,7 @@ public class Controll : MonoBehaviour
         {          
             case ("Win"):
                 confeti.SetActive(true);
+                Line.Instance.StartGame("stay");
                 break;
             case ("Lose"):
 
@@ -43,7 +44,8 @@ public class Controll : MonoBehaviour
     } 
     public void StartLevel()
     {
-        Set_state("Game");       
+        Line.Instance.StartGame("move");
+        Set_state("Game");        
     }
     public void Restart()
     {
