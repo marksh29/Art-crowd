@@ -9,7 +9,7 @@ using System.Collections.Generic;
 public static class TinySauce
 { 
 
-    public const string Version = "5.0.3";
+    public const string Version = "6.1.0";
 
     public static string token = "";
     /// <summary>

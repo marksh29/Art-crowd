@@ -1,4 +1,5 @@
 ﻿using System;
+using com.adjust.sdk;
 using UnityEngine;
 using Voodoo.Sauce.Internal.Analytics;
 using Voodoo.Sauce.Internal.IdfaAuthorization;
@@ -11,22 +12,29 @@ namespace Voodoo.Sauce.Internal
         private const string TAG = "TinySauce";
         private static TinySauceBehaviour _instance;
         private TinySauceSettings _sauceSettings;
+        private bool _advertiserTrackingEnabled;
 
 
         private void Awake()
         {
-    
+            VoodooLog.Initialize(VoodooLogLevel.WARNING);
+            
             #if UNITY_IOS
 
                 NativeWrapper.RequestAuthorization((status) =>
                 {
+                    _advertiserTrackingEnabled = status == IdfaAuthorizationStatus.Authorized;
                     InitFacebook();
+                    InitAnalytics(); // init Voodoo Analytics and GameAnalytics
+                    GetComponent<Adjust>().InitAdjust(); // GetComponent to be removed from here in future releases
                 });
 
             #elif UNITY_ANDROID
 
                 InitFacebook();
-
+                // init TinySauce sdk
+                InitAnalytics();
+                GetComponent<Adjust>().InitAdjust(); // GetComponent to be removed from here in future releases
             #endif
             
             if (transform != transform.root)
@@ -44,9 +52,8 @@ namespace Voodoo.Sauce.Internal
             _instance = this;
             DontDestroyOnLoad(this);
             
-            VoodooLog.Initialize(VoodooLogLevel.WARNING);
-            // init TinySauce sdk
-            InitAnalytics();
+            
+            
         }
         
 
@@ -54,6 +61,14 @@ namespace Voodoo.Sauce.Internal
         {
             if (FB.IsInitialized)
             {
+                #if UNITY_IOS
+                    FB.Mobile.SetAdvertiserTrackingEnabled(_advertiserTrackingEnabled); // iOS only call, do not need to be done on Android
+                    FB.Mobile.SetAdvertiserIDCollectionEnabled(_advertiserTrackingEnabled); 
+                #elif UNITY_ANDROID
+                    FB.Mobile.SetAdvertiserIDCollectionEnabled(true);
+                #endif
+                FB.Mobile.SetAutoLogAppEventsEnabled(true);
+                
                 // Signal an app activation App Event
                 FB.ActivateApp();
                 // Continue with Facebook SDK
@@ -90,7 +105,7 @@ namespace Voodoo.Sauce.Internal
         {
             if (!FB.IsInitialized) FB.Init(InitCallback, OnHideUnity);
             
-            else FB.ActivateApp();           
+            else InitCallback();         
         }
 
         private void OnApplicationPause(bool pauseStatus)

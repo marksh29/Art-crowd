@@ -26,6 +26,7 @@
           android:name="com.unity3d.player.UnityPlayerActivity"
           android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"
           android:hardwareAccelerated="false"
+          android:exported="true"
           android:label="@string/app_name"
           android:launchMode="singleTask"
           android:screenOrientation="fullSensor">
