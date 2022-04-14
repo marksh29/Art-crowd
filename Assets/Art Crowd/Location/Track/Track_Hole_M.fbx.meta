@@ -1,19 +1,9 @@
 fileFormatVersion: 2
-guid: e76b5dc94df8b854cad153ec7d0f4ff3
+guid: fe00ff3aeaf86af41bc3a1ef6515ff36
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: JumpingBoard
-    second: {fileID: 2100000, guid: c323ed59b20417347ac55816a0e792bc, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: JumpingBoard_2
-    second: {fileID: 2100000, guid: 568862ef31edb6449b66ad79b1223090, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -119,10 +119,10 @@ public class Player : MonoBehaviour
     //}
     public void Damage(Enem enemy)
     {
-        enemy.Kill(life >= enemy.life ? enemy.life : life);
-        life -= life >= enemy.life ? enemy.life : life;
+        enemy.Kill(life);
+        life -= enemy.life;
 
-        if(changeScaleForDamage)
+        if (changeScaleForDamage)
         {           
             float scale = skin.GetBlendShapeWeight(0) + addShape;
             skin.SetBlendShapeWeight(0, scale > 100 ? 100 : scale);

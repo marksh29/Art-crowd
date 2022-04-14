@@ -5,16 +5,17 @@ using UnityEngine;
 public class Enem : MonoBehaviour
 {
     public int life;
+    int curLife;
     public GameObject deadEffect;
     void Start()
     {
-        
+        curLife = life;
     }
     public void Kill(int damage)
     {
         
-        life -= damage;
-        if(life <= 0)
+        curLife -= damage;
+        if(curLife <= 0)
         {
             GetComponent<Animator>().SetTrigger("fall");
             gameObject.tag = "Untagged";
