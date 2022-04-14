@@ -13,12 +13,14 @@ public class Controll : MonoBehaviour
     public string _state;
     [SerializeField] GameObject[] panels;
     [SerializeField] GameObject confeti, loseConfeti;
+    [SerializeField] Text leveltext;
     private void Awake()
     {
         if (Instance == null) Instance = this;
     }
     void Start()
     {
+        leveltext.text = "LEVEL" + (PlayerPrefs.GetInt("level") + 1).ToString();
         PathPlacer.Instance.Off();
         Set_state("Menu");
     }
@@ -37,6 +39,7 @@ public class Controll : MonoBehaviour
                 confeti.SetActive(true);
                 Line.Instance.StartGame("stay");
                 Line.Instance.End(false);
+                PlayerPrefs.SetInt("level", PlayerPrefs.GetInt("level") + 1);
                 break;
             case ("Lose"):
                 loseConfeti.SetActive(true);

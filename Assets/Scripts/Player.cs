@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] bool changeScaleForDamage;
     bool end;
     [SerializeField] GameObject deadEffect;
-
+    [SerializeField] Material mat;
     void Start()
     {
         life = life == 0 ? 1 : life;
@@ -79,13 +79,10 @@ public class Player : MonoBehaviour
             }
 
             if (coll.gameObject.tag == "Add")
-            {
-                coll.gameObject.transform.rotation = Quaternion.Euler(0,0,0);
-                coll.gameObject.tag = "Untagged";
+            {                
                 Line.Instance.AddObj(coll.gameObject);
                 coll.gameObject.transform.parent = transform.parent;
-                coll.gameObject.GetComponent<Player>().SetAnimation("move");
-                StartCoroutine(coll.gameObject.GetComponent<Player>().Effect(1));
+                coll.gameObject.GetComponent<Player>().Add();
             }
             if (coll.gameObject.tag == "Boost")
             {
@@ -154,5 +151,13 @@ public class Player : MonoBehaviour
         transform.parent = parent.parent;
         transform.localScale += new Vector3(count, count, count);
         transform.parent = parent;
+    }
+    public void Add()
+    {
+        skin.sharedMaterial = mat;
+        gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+        gameObject.tag = "Untagged";
+        SetAnimation("move");
+        StartCoroutine(Effect(1));
     }
 }
