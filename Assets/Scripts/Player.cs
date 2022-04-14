@@ -79,6 +79,7 @@ public class Player : MonoBehaviour
 
             if (coll.gameObject.tag == "Add")
             {
+                //coll.gameObject.transform.rotation = Quaternion.Euler(0,0,0);
                 coll.gameObject.tag = "Untagged";
                 Line.Instance.AddObj(coll.gameObject);
                 coll.gameObject.transform.parent = transform.parent;

@@ -12,7 +12,7 @@ public class Controll : MonoBehaviour
     public static Controll Instance;
     public string _state;
     [SerializeField] GameObject[] panels;
-    [SerializeField] GameObject confeti;
+    [SerializeField] GameObject confeti, loseConfeti;
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -38,7 +38,7 @@ public class Controll : MonoBehaviour
                 Line.Instance.StartGame("stay");
                 break;
             case ("Lose"):
-
+                loseConfeti.SetActive(true);
                 break;
         }
     } 
