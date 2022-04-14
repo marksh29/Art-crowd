@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject[] effect;
     [SerializeField] bool changeScaleForDamage;
     bool end;
+    [SerializeField] GameObject deadEffect;
 
     void Start()
     {
@@ -133,11 +134,13 @@ public class Player : MonoBehaviour
         
         if (life <= 0)
         {
-            SetAnimation("hit");
+            SetAnimation("fall");
             end = true;            
             transform.parent = null;
             Line.Instance.RemoveObj(gameObject);
-            Destroy(gameObject, 1);
+            Destroy(gameObject, 3);
+            GameObject eff = Instantiate(deadEffect, new Vector3(transform.position.x, 1 ,transform.position.z), transform.rotation) as GameObject;
+            Destroy(eff, 1);
         }
     }
     public IEnumerator Effect(int id)
