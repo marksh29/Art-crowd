@@ -36,15 +36,18 @@ public class Controll : MonoBehaviour
             case ("Win"):
                 confeti.SetActive(true);
                 Line.Instance.StartGame("stay");
+                Line.Instance.End(false);
                 break;
             case ("Lose"):
                 loseConfeti.SetActive(true);
+                Line.Instance.End(false);
                 break;
         }
     } 
     public void StartLevel()
     {
         Line.Instance.StartGame("move");
+        Line.Instance.End(true);
         Set_state("Game");        
     }
     public void Restart()

@@ -20,6 +20,7 @@ public class Line : MonoBehaviour
     }
     void Start()
     {
+        End(false);
         countText.text = gameObj.Count.ToString();
     }
     public void StartGame(string name)
@@ -37,14 +38,14 @@ public class Line : MonoBehaviour
             CleareLine();
         }
         if (Input.GetMouseButton(0) && lineOn)
-        {
-            if (lineObj.Count > 0)
-            {
-                dist = (lineObj[lineObj.Count - 1].transform.position - Input.mousePosition).sqrMagnitude;
-            }
+        {            
             if (lineObj.Count < gameObj.Count && (lineObj.Count == 0 || dist >= spawnDistance))
             {
                 SpawnObj();
+            }
+            if (lineObj.Count > 0)
+            {
+                dist = (lineObj[lineObj.Count - 1].transform.position - Input.mousePosition).sqrMagnitude;
             }
         }
         if(Input.GetMouseButtonUp(0))
@@ -109,5 +110,10 @@ public class Line : MonoBehaviour
         countText.text = gameObj.Count.ToString();
         if (gameObj.Count <= 0)
            PlayerControll.Instance.Lose();
+    }
+
+    public void End(bool state)
+    {
+        countText.gameObject.transform.parent.gameObject.SetActive(state);
     }
 }

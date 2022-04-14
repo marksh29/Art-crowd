@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
 
             if (coll.gameObject.tag == "Add")
             {
-                //coll.gameObject.transform.rotation = Quaternion.Euler(0,0,0);
+                coll.gameObject.transform.rotation = Quaternion.Euler(0,0,0);
                 coll.gameObject.tag = "Untagged";
                 Line.Instance.AddObj(coll.gameObject);
                 coll.gameObject.transform.parent = transform.parent;
@@ -97,9 +97,9 @@ public class Player : MonoBehaviour
     {
         StartCoroutine(Effect(0));
         life++;
-        //transform.localScale += new Vector3(addScale, addScale, addScale);
         float scale = skin.GetBlendShapeWeight(0) - addShape;
         skin.SetBlendShapeWeight(0, scale < 0 ? 0 : scale);
+        AddScales(transform.parent, addScale);
     }
     //private void OnCollisionEnter(Collision coll)
     //{
@@ -125,10 +125,10 @@ public class Player : MonoBehaviour
         life -= life >= enemy.life ? enemy.life : life;
 
         if(changeScaleForDamage)
-        {
-            //transform.localScale -= new Vector3(addScale, addScale, addScale);
+        {           
             float scale = skin.GetBlendShapeWeight(0) + addShape;
             skin.SetBlendShapeWeight(0, scale > 100 ? 100 : scale);
+            AddScales(transform.parent, -addScale);
         } 
         
         if (life <= 0)
@@ -145,5 +145,11 @@ public class Player : MonoBehaviour
         effect[id].SetActive(true);
         yield return new WaitForSeconds(1);
         effect[id].SetActive(false);
+    }
+    void AddScales(Transform parent, float count)
+    {
+        transform.parent = parent.parent;
+        transform.localScale += new Vector3(count, count, count);
+        transform.parent = parent;
     }
 }
