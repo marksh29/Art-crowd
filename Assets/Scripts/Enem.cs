@@ -19,7 +19,7 @@ public class Enem : MonoBehaviour
             GetComponent<Animator>().SetTrigger("fall");
             gameObject.tag = "Untagged";
             transform.parent.gameObject.GetComponent<Enemy>().RemoveCount(gameObject);            
-            Destroy(gameObject, 1);
+            Destroy(gameObject, 3);
             GameObject eff = Instantiate(deadEffect, new Vector3(transform.position.x, 1, transform.position.z), transform.rotation) as GameObject;
             Destroy(eff, 1);
         } 
