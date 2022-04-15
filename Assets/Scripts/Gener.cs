@@ -10,6 +10,10 @@ public class Gener : MonoBehaviour
     [SerializeField] List<GameObject> list;
     [SerializeField] int count;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         GameObject[] mon = GameObject.FindGameObjectsWithTag("Money");
