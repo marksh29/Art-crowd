@@ -5,7 +5,7 @@ using UnityEngine;
 public class Gener : MonoBehaviour
 {
     public static Gener Instance;
-    [SerializeField] float onTime;
+    [SerializeField] float onTime, yy;
     [SerializeField] GameObject obj, confeti;
     [SerializeField] List<GameObject> list;
     [SerializeField] int count;
@@ -20,12 +20,10 @@ public class Gener : MonoBehaviour
         GameObject[] en = GameObject.FindGameObjectsWithTag("Enemy");
         count = mon.Length + en.Length;
 
-        float add = obj.transform.localScale.y;
         for (int i = 0; i < count; i++)
         {
-            GameObject sp = Instantiate(obj, transform) as GameObject;            
-            float yy = i == 0 ? list[0].transform.localPosition.y + add : list[i - 1].transform.localPosition.y + add;
-            sp.transform.localPosition = new Vector3(list[0].transform.localPosition.x, yy, list[0].transform.localPosition.z);
+            GameObject sp = Instantiate(obj, list[0].transform.parent) as GameObject;
+            sp.transform.localPosition = new Vector3(list[0].transform.localPosition.x, list[i].transform.localPosition.y + yy, list[0].transform.localPosition.z);
             list.Add(sp);
             sp.SetActive(false);
         }

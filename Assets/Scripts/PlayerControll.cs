@@ -52,7 +52,7 @@ public class PlayerControll : MonoBehaviour
     }
     public void Win()
     {
-        //Controll.Instance.Set_state("Win");
+        Line.Instance.StartGame("stay");
         Controll.Instance.Set_state("End");
         Gener.Instance.StartEnd(money);
         path.speed = 0;

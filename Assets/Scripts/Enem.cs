@@ -10,6 +10,7 @@ public class Enem : MonoBehaviour
     void Start()
     {
         curLife = life;
+        GetComponent<Animator>().SetTrigger("enemy");
     }
     public void Kill(int damage)
     {
