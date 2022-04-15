@@ -86,6 +86,7 @@ public class Player : MonoBehaviour
             }
             if (coll.gameObject.tag == "Money")
             {
+                UIcoin.Instance.MoveOn(gameObject.transform);
                 PlayerControll.Instance.AddMoney();
                 coll.gameObject.SetActive(false);
             }
