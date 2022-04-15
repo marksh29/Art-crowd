@@ -17,6 +17,7 @@ public class Enem : MonoBehaviour
         curLife -= damage;
         if(curLife <= 0)
         {
+            PlayerControll.Instance.AddMoney();
             GetComponent<Animator>().SetTrigger("fall");
             gameObject.tag = "Untagged";
             transform.parent.gameObject.GetComponent<Enemy>().RemoveCount(gameObject);            

@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PathCreation.Examples;
+using UnityEngine.UI;
 
 public class PlayerControll : MonoBehaviour
 {
     public static PlayerControll Instance;
     [Header("--------Options--------")]
     [SerializeField] float moveSpeed;
-   
+    [SerializeField] int addMoney;
+
     [Header("--------Game--------")]
     [SerializeField] PathFollower path;
-    [SerializeField] float speed; 
-    [SerializeField] GameObject head;
+    [SerializeField] Text moneyText;
+    int money;
 
     private void Awake()
     {
@@ -21,6 +23,8 @@ public class PlayerControll : MonoBehaviour
     void Start()
     {
         path.speed = moveSpeed;
+        //money = PlayerPrefs.GetInt("money");
+        moneyText.text = money.ToString();
     }
     void FixedUpdate()
     {
@@ -28,6 +32,12 @@ public class PlayerControll : MonoBehaviour
         {
                                
         }
+    }
+    public void AddMoney()
+    {
+        money += addMoney;
+        moneyText.text = money.ToString();
+        PlayerPrefs.SetInt("money", money);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,13 +48,13 @@ public class PlayerControll : MonoBehaviour
     public void Lose()
     {
         Controll.Instance.Set_state("Lose");
-        path.speed = 0;
-        head = null;        
+        path.speed = 0;      
     }
     public void Win()
     {
-        Controll.Instance.Set_state("Win");
+        //Controll.Instance.Set_state("Win");
+        Controll.Instance.Set_state("End");
+        Gener.Instance.StartEnd(money);
         path.speed = 0;
-        head = null;
     }
 }

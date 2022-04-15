@@ -84,39 +84,40 @@ public class Player : MonoBehaviour
                 coll.gameObject.transform.parent = transform.parent;
                 coll.gameObject.GetComponent<Player>().Add();
             }
+            if (coll.gameObject.tag == "Money")
+            {
+                PlayerControll.Instance.AddMoney();
+                coll.gameObject.SetActive(false);
+            }
             if (coll.gameObject.tag == "Boost")
             {
-                AddScale();
+                print(coll.gameObject.transform.parent.gameObject.GetComponent<Gate>().count);
+                if(coll.gameObject.transform.parent.gameObject.GetComponent<Gate>().count > 0)
+                    AddScale(coll.gameObject.transform.parent.gameObject.GetComponent<Gate>());
+                else
+                    RemoveScale(coll.gameObject.transform.parent.gameObject.GetComponent<Gate>());
             }
         }       
     }
 
-    void AddScale()
+    void AddScale(Gate gate)
     {
         StartCoroutine(Effect(0));
-        life++;
-        float scale = skin.GetBlendShapeWeight(0) - addShape;
+        int cnt = gate.SetGate();       
+        life += cnt;
+        float scale = skin.GetBlendShapeWeight(0) -(addShape * cnt);
         skin.SetBlendShapeWeight(0, scale < 0 ? 0 : scale);
         AddScales(transform.parent, addScale);
     }
-    //private void OnCollisionEnter(Collision coll)
-    //{
-    //    if (coll.gameObject.tag == "Enemy")
-    //    {
-    //        Damage(coll.gameObject.GetComponent<Enem>());   
-    //    }
-    //    if (coll.gameObject.tag == "Wall")
-    //    {
-    //        Line.Instance.RemoveObj(gameObject);
-    //        Destroy(gameObject);
-    //    }
-    //    if (coll.gameObject.tag == "Add")
-    //    {
-    //        coll.gameObject.tag = "Untagged";
-    //        Line.Instance.AddObj(coll.gameObject);
-    //        coll.gameObject.transform.parent = transform.parent;           
-    //    }
-    //}
+    void RemoveScale(Gate gate)
+    {
+        StartCoroutine(Effect(0));
+        int cnt = life <= gate.count ? life -1 : Mathf.Abs(gate.SetGate());
+        life -= cnt;        
+        float scale = skin.GetBlendShapeWeight(0) + (addShape * cnt);
+        skin.SetBlendShapeWeight(0, scale > 100 ? 100 : scale);
+        AddScales(transform.parent, -addScale);
+    }   
     public void Damage(Enem enemy)
     {
         enemy.Kill(life);
