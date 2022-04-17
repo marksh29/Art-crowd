@@ -50,3 +50,6 @@ TagManager:
   - name: 1
     uniqueID: 2258051427
     locked: 0
+  - name: New Layer
+    uniqueID: 3067332717
+    locked: 0
