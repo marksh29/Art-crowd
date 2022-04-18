@@ -14,6 +14,7 @@ public class Controll : MonoBehaviour
     [SerializeField] GameObject[] panels;
     [SerializeField] GameObject confeti, loseConfeti;
     [SerializeField] Text leveltext;
+    public Vector3 endPos;
     private void Awake()
     {
         if (Instance == null) Instance = this;

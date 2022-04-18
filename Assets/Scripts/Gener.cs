@@ -22,6 +22,8 @@ public class Gener : MonoBehaviour
     }
     void Start()
     {
+        endPos = Controll.Instance.endPos;
+
         GameObject[] mon = GameObject.FindGameObjectsWithTag("Money");
         GameObject[] en = GameObject.FindGameObjectsWithTag("Enemy");
         count = mon.Length + en.Length;
