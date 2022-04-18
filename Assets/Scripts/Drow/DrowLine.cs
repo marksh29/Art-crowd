@@ -14,7 +14,9 @@ public class DrowLine : MonoBehaviour
     public GameObject linePrefab, currentLine;
     LineRenderer lineRenderer;
     public List<Vector2> fingerPositions;
+    public List<GameObject> line;
 
+    public GameObject parrent;
     private void Awake()
     {
         Instance = this;
@@ -31,7 +33,7 @@ public class DrowLine : MonoBehaviour
         {            
             CreateLine();
         }
-        if (Input.GetMouseButton(0) && Controll.Instance._state == "Game")
+        if (Input.GetMouseButton(0))
         {
             Vector2 tempFingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (Vector2.Distance(tempFingerPos, fingerPositions[fingerPositions.Count - 1]) > 0.1f)
@@ -39,7 +41,11 @@ public class DrowLine : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
-            fingerPositions.Clear();
+            for (int i = 0; i < line.Count; i++)
+            {
+
+            }
+            //fingerPositions.Clear();
         }
     }
     void UpdateLine(Vector2 newFingerPos)
@@ -52,6 +58,7 @@ public class DrowLine : MonoBehaviour
     void CreateLine()
     {
         currentLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity);
+        line.Add(currentLine);
         lineRenderer = currentLine.GetComponent<LineRenderer>();
         fingerPositions.Clear();
         fingerPositions.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));

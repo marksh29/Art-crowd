@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] float moveTime;
-    [SerializeField] int life;
+    public int life;
     Vector3 targetPosition;
     IEnumerator corr;
 
@@ -94,7 +94,6 @@ public class Player : MonoBehaviour
             }
             if (coll.gameObject.tag == "Boost")
             {
-                print(coll.gameObject.transform.parent.gameObject.GetComponent<Gate>().count);
                 if(coll.gameObject.transform.parent.gameObject.GetComponent<Gate>().count > 0)
                     AddScale(coll.gameObject.transform.parent.gameObject.GetComponent<Gate>());
                 else
@@ -111,6 +110,7 @@ public class Player : MonoBehaviour
         float scale = skin.GetBlendShapeWeight(0) -(addShape * cnt);
         skin.SetBlendShapeWeight(0, scale < 0 ? 0 : scale);
         AddScales(transform.parent, addScale);
+        Line.Instance.SetCount();
     }
     void RemoveScale(Gate gate)
     {
@@ -125,6 +125,7 @@ public class Player : MonoBehaviour
     {
         enemy.Kill(life);
         life -= enemy.life;
+        Line.Instance.SetCount();
 
         if (changeScaleForDamage)
         {           

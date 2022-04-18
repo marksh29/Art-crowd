@@ -21,7 +21,7 @@ public class Line : MonoBehaviour
     void Start()
     {
         End(false);
-        countText.text = gameObj.Count.ToString();
+        SetCount();
     }
     public void StartGame(string name)
     {
@@ -102,18 +102,27 @@ public class Line : MonoBehaviour
     public void AddObj(GameObject obj)
     {
         gameObj.Add(obj);
-        countText.text = gameObj.Count.ToString();
+        SetCount();        
     }
     public void RemoveObj(GameObject obj)
     {
-        gameObj.Remove(obj);
-        countText.text = gameObj.Count.ToString();
+        gameObj.Remove(obj);       
         if (gameObj.Count <= 0)
            PlayerControll.Instance.Lose();
+        SetCount();
     }
 
     public void End(bool state)
     {
         countText.gameObject.transform.parent.gameObject.SetActive(state);
+    }
+    public void SetCount()
+    {
+        int ct = new int();
+        for (int i = 0; i < gameObj.Count; i++)
+        {
+            ct += gameObj[i].GetComponent<Player>().life;
+        }
+        countText.text = ct.ToString();
     }
 }
