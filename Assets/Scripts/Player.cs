@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject[] effect;
     [SerializeField] bool changeScaleForDamage;
     bool end;
-    [SerializeField] GameObject deadEffect;
+    [SerializeField] GameObject deadEffect, goldEffect;
     [SerializeField] Material mat;
     void Start()
     {
@@ -86,6 +86,8 @@ public class Player : MonoBehaviour
             }
             if (coll.gameObject.tag == "Money")
             {
+                GameObject eff = Instantiate(goldEffect, coll.gameObject.transform.position, transform.rotation) as GameObject;
+                Destroy(eff, 1);
                 UIcoin.Instance.MoveOn(gameObject.transform);
                 PlayerControll.Instance.AddMoney();
                 coll.gameObject.SetActive(false);
