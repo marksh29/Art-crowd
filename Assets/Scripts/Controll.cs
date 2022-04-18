@@ -20,7 +20,7 @@ public class Controll : MonoBehaviour
     }
     void Start()
     {
-        leveltext.text = "LEVEL" + (PlayerPrefs.GetInt("level") + 1).ToString();
+        leveltext.text = "LEVEL " + (PlayerPrefs.GetInt("level") + 1).ToString();
         PathPlacer.Instance.Off();
         Set_state("Menu");
     }

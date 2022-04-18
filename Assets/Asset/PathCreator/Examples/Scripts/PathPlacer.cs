@@ -42,7 +42,7 @@ namespace PathCreation.Examples {
         void DestroyObjects () {
             int numChildren = holder.transform.childCount;
             for (int i = numChildren - 1; i >= 0; i--) {
-                DestroyImmediate (holder.transform.GetChild (i).gameObject, false);
+                DestroyImmediate (holder.transform.GetChild(i).gameObject, false);
             }
         }
 
