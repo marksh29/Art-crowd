@@ -17,7 +17,8 @@ public class Enem : MonoBehaviour
         GetComponent<Animator>().SetTrigger("enemy");
     }
     public void Kill(int damage)
-    {        
+    {
+        print("coll");
         curLife -= damage;
         transform.parent.gameObject.GetComponent<Enemy>().SetCount();
 

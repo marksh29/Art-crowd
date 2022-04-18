@@ -9,10 +9,11 @@ public class Line : MonoBehaviour
     [SerializeField] RectTransform rect;
     [SerializeField] TextMeshPro countText;
     [SerializeField] GameObject prefab;
-    [SerializeField] float spawnDistance;
+    [SerializeField] float spawnDistance, spawnScale;
     float dist;
     [SerializeField] bool cleareLine, updatePosition;
     bool lineOn;
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -38,7 +39,7 @@ public class Line : MonoBehaviour
             CleareLine();
         }
         if (Input.GetMouseButton(0) && lineOn)
-        {            
+        {
             if (lineObj.Count < gameObj.Count && (lineObj.Count == 0 || dist >= spawnDistance))
             {
                 SpawnObj();
@@ -46,7 +47,7 @@ public class Line : MonoBehaviour
             if (lineObj.Count > 0)
             {
                 dist = (lineObj[lineObj.Count - 1].transform.position - Input.mousePosition).sqrMagnitude;
-            }
+            }          
         }
         if(Input.GetMouseButtonUp(0))
         {
@@ -55,12 +56,13 @@ public class Line : MonoBehaviour
                 CleareLine();
         }
     }
-
+   
     void SpawnObj()
     {
         GameObject obj = Instantiate(prefab) as GameObject;
-        obj.transform.position = Input.mousePosition;
         obj.transform.parent = rect.gameObject.transform;
+        obj.transform.position = Input.mousePosition;      
+        obj.GetComponent<RectTransform>().sizeDelta = new Vector2(spawnScale, spawnScale);
         lineObj.Add(obj);
         if (updatePosition)
             OffLine();
@@ -72,7 +74,7 @@ public class Line : MonoBehaviour
             Destroy(lineObj[i]);
         }
         lineObj.Clear();
-    }
+    }  
 
     void SetPos()
     {
@@ -83,7 +85,6 @@ public class Line : MonoBehaviour
             float yy = 0.4f / (rect.sizeDelta.y / 2);
             Vector3 newPos = new Vector3(lineObj[i].GetComponent<RectTransform>().anchoredPosition.x * xx, 1, lineObj[i].GetComponent<RectTransform>().anchoredPosition.y * yy);
             gameObj[i].GetComponent<Player>().SetStarget(newPos);
-            //gameObj[i].transform.localPosition = newPos;
         }
     }
     public void SetLine()
