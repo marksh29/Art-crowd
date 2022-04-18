@@ -12,9 +12,7 @@ public class Gener : MonoBehaviour
     [SerializeField] List<GameObject> list;
     [SerializeField] int count;
 
-    [SerializeField] CinemachineVirtualCamera cam;
-    [SerializeField] float camEndPosTime;
-    [SerializeField] Vector3 endPos;
+    [SerializeField] CinemachineVirtualCamera gameCam, cam;
 
     private void Awake()
     {
@@ -22,8 +20,6 @@ public class Gener : MonoBehaviour
     }
     void Start()
     {
-        endPos = Controll.Instance.endPos;
-
         GameObject[] mon = GameObject.FindGameObjectsWithTag("Money");
         GameObject[] en = GameObject.FindGameObjectsWithTag("Enemy");
         count = mon.Length + en.Length;
@@ -46,27 +42,28 @@ public class Gener : MonoBehaviour
 
     public void StartEnd(int id)
     {
-        StartCoroutine(End(id));
-        StartCoroutine(DoMove(camEndPosTime));       
+        gameCam.gameObject.SetActive(false);
+        cam.gameObject.SetActive(true);
+        StartCoroutine(End(id));    
         cam.LookAt = null;
         end = true;
     }
-    private IEnumerator DoMove(float time)
-    {
-        var transposer = cam.GetCinemachineComponent<CinemachineTransposer>();
-        //transposer.m_FollowOffset = endPos;
+    //private IEnumerator DoMove(float time)
+    //{
+    //    var transposer = cam.GetCinemachineComponent<CinemachineTransposer>();
+    //    //transposer.m_FollowOffset = endPos;
 
-        Vector3 startPosition = transposer.m_FollowOffset;
+    //    Vector3 startPosition = transposer.m_FollowOffset;
 
-        float startTime = Time.realtimeSinceStartup;
-        float fraction = 0f;
-        while (fraction < 1f)
-        {
-            fraction = Mathf.Clamp01((Time.realtimeSinceStartup - startTime) / time);
-            transposer.m_FollowOffset = Vector3.Lerp(startPosition, endPos, fraction);
-            yield return null;
-        }
-    }
+    //    float startTime = Time.realtimeSinceStartup;
+    //    float fraction = 0f;
+    //    while (fraction < 1f)
+    //    {
+    //        fraction = Mathf.Clamp01((Time.realtimeSinceStartup - startTime) / time);
+    //        transposer.m_FollowOffset = Vector3.Lerp(startPosition, endPos, fraction);
+    //        yield return null;
+    //    }
+    //}
 
     IEnumerator End(int id)
     {
