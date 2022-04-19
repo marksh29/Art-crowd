@@ -66619,6 +66619,10 @@ PrefabInstance:
       propertyPath: m_Text
       value: DRAW!
       objectReference: {fileID: 0}
+    - target: {fileID: 1586501589178276278, guid: 2236266da8dafd949a3cd8c310f864a5, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1586501590159449902, guid: 2236266da8dafd949a3cd8c310f864a5, type: 3}
       propertyPath: m_Name
       value: Tutorial
@@ -66705,6 +66709,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1586501590159449903, guid: 2236266da8dafd949a3cd8c310f864a5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1586501590161245640, guid: 2236266da8dafd949a3cd8c310f864a5, type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
