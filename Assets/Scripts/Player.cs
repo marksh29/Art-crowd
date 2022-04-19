@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
             {                
                 Line.Instance.AddObj(coll.gameObject);
                 coll.gameObject.transform.parent = transform.parent;
-                coll.gameObject.GetComponent<Player>().Add();
+                coll.gameObject.GetComponent<Player>().Add(gameObject.transform);
             }
             if (coll.gameObject.tag == "Money")
             {
@@ -161,10 +161,10 @@ public class Player : MonoBehaviour
         transform.localScale += new Vector3(count, count, count);
         transform.parent = parent;
     }
-    public void Add()
+    public void Add(Transform pl)
     {
         skin.sharedMaterial = mat;
-        gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+        gameObject.transform.localRotation = Quaternion.Euler(0, pl.localRotation.y, 0);
         gameObject.tag = "Untagged";
         SetAnimation("move");
         StartCoroutine(Effect(1));

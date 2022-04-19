@@ -26978,7 +26978,7 @@ MonoBehaviour:
   rect: {fileID: 1192571952}
   countText: {fileID: 1631768920}
   prefab: {fileID: 3634007238864512755, guid: cbc10cd2bcb4aea44b83c22eab61e9ce, type: 3}
-  spawnDistance: 8000
+  spawnDistance: 1000
   spawnScale: 40
   cleareLine: 1
   updatePosition: 0
