@@ -13,6 +13,7 @@ public class Line : MonoBehaviour
     float dist;
     [SerializeField] bool cleareLine, updatePosition;
     bool lineOn;
+    [SerializeField] GameObject tutor;
 
     private void Awake()
     {
@@ -34,8 +35,9 @@ public class Line : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && Controll.Instance._state =="Game")
         {
+            tutor.SetActive(false);
             CleareLine();
         }
         if (Input.GetMouseButton(0) && lineOn)
