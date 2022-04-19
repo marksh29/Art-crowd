@@ -17,14 +17,14 @@ public class UIcoin : MonoBehaviour
     {
         
     }
-    public void MoveOn(Transform pos)
+    public void MoveOn(Transform pos, int count)
     {
-        StartCoroutine(StartMove(pos));
+        StartCoroutine(StartMove(pos, count));
     }
-    IEnumerator StartMove(Transform pos)
+    IEnumerator StartMove(Transform pos, int count)
     {
         Vector3 stPos = Camera.main.WorldToScreenPoint(pos.position);
-        for (int i = 0; i < moveCoins.Length; i++)
+        for (int i = 0; i < count; i++)
         {
             moveCoins[i].position = stPos;
             moveCoins[i].gameObject.SetActive(true);
@@ -50,6 +50,7 @@ public class UIcoin : MonoBehaviour
             obj.localPosition = Vector2.Lerp(startPosition, targetPos.localPosition, fraction);
             yield return null;
         }
+        PlayerControll.Instance.AddMoney();
         obj.gameObject.SetActive(false);
         StartCoroutine(Scale());
     }

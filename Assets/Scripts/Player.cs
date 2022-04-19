@@ -92,8 +92,8 @@ public class Player : MonoBehaviour
             {
                 GameObject eff = Instantiate(goldEffect, coll.gameObject.transform.position, transform.rotation) as GameObject;
                 Destroy(eff, 1);
-                UIcoin.Instance.MoveOn(coll.gameObject.transform);
-                PlayerControll.Instance.AddMoney();
+                UIcoin.Instance.MoveOn(coll.gameObject.transform, 1);
+                //PlayerControll.Instance.AddMoney();
                 coll.gameObject.SetActive(false);
             }
             if (coll.gameObject.tag == "Boost")

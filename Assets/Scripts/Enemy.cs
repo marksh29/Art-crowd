@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] int count;
     void Start()
     {
-        count = transform.childCount;
+        count = transform.childCount -1;
         SetCount();
     }
     public void RemoveCount()
@@ -16,8 +16,7 @@ public class Enemy : MonoBehaviour
         count--;
         if (count <= 0)
         {
-            txt.transform.parent.gameObject.SetActive(false);
-            gameObject.SetActive(false);
+            StartCoroutine(Off());           
         }            
     }
     public void SetCount()
@@ -28,5 +27,11 @@ public class Enemy : MonoBehaviour
             ct += transform.GetChild(i).GetComponent<Enem>().curLife > 0 ? transform.GetChild(i).GetComponent<Enem>().curLife : 0;
         }
         txt.text = ct.ToString();
+    }
+    IEnumerator Off()
+    {
+        txt.transform.parent.gameObject.SetActive(false);
+        yield return new WaitForSeconds(2);
+        gameObject.SetActive(false);
     }
 }

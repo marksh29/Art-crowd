@@ -26,11 +26,11 @@ public class Enem : MonoBehaviour
 
         if (curLife <= 0)
         {
-            PlayerControll.Instance.AddMoney();
+            //PlayerControll.Instance.AddMoney();
             GetComponent<Animator>().SetTrigger("fall");
             gameObject.tag = "Untagged";
             transform.parent.gameObject.GetComponent<Enemy>().RemoveCount();
-            UIcoin.Instance.MoveOn(gameObject.transform);
+            UIcoin.Instance.MoveOn(gameObject.transform, 3);
             Destroy(gameObject, 3);
             GameObject eff = Instantiate(deadEffect, new Vector3(transform.position.x, 1, transform.position.z), transform.rotation) as GameObject;
             Destroy(eff, 1);
