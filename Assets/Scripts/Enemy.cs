@@ -15,7 +15,10 @@ public class Enemy : MonoBehaviour
     {
         count--;
         if (count <= 0)
+        {
+            txt.transform.parent.gameObject.SetActive(false);
             gameObject.SetActive(false);
+        }            
     }
     public void SetCount()
     {

@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Enem : MonoBehaviour
 {
-    public int life;
-    public int curLife;
+    public int life, curLife;
+    public float addScale, addShape;
     public GameObject deadEffect;
+    [SerializeField] SkinnedMeshRenderer skin;
 
     private void Awake()
     {
         curLife = life;
+        transform.localScale += new Vector3(addScale, addScale, addScale);
+
     }
     void Start()
     {        
@@ -18,7 +21,6 @@ public class Enem : MonoBehaviour
     }
     public void Kill(int damage)
     {
-        print("coll");
         curLife -= damage;
         transform.parent.gameObject.GetComponent<Enemy>().SetCount();
 
@@ -27,7 +29,8 @@ public class Enem : MonoBehaviour
             PlayerControll.Instance.AddMoney();
             GetComponent<Animator>().SetTrigger("fall");
             gameObject.tag = "Untagged";
-            transform.parent.gameObject.GetComponent<Enemy>().RemoveCount();            
+            transform.parent.gameObject.GetComponent<Enemy>().RemoveCount();
+            UIcoin.Instance.MoveOn(gameObject.transform);
             Destroy(gameObject, 3);
             GameObject eff = Instantiate(deadEffect, new Vector3(transform.position.x, 1, transform.position.z), transform.rotation) as GameObject;
             Destroy(eff, 1);

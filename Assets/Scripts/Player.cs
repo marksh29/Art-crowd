@@ -20,6 +20,10 @@ public class Player : MonoBehaviour
     void Start()
     {
         life = life == 0 ? 1 : life;
+
+        float scale = skin.GetBlendShapeWeight(0) - (addShape * (life - 1));
+        skin.SetBlendShapeWeight(0, scale < 0 ? 0 : scale);
+        AddScales(transform.parent, (addScale * (life - 1)));
     }
     private void Update()
     {
@@ -88,7 +92,7 @@ public class Player : MonoBehaviour
             {
                 GameObject eff = Instantiate(goldEffect, coll.gameObject.transform.position, transform.rotation) as GameObject;
                 Destroy(eff, 1);
-                UIcoin.Instance.MoveOn(gameObject.transform);
+                UIcoin.Instance.MoveOn(coll.gameObject.transform);
                 PlayerControll.Instance.AddMoney();
                 coll.gameObject.SetActive(false);
             }
