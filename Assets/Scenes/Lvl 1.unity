@@ -12400,7 +12400,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 269167176}
-  m_LocalRotation: {x: 0.23556674, y: -0.15794764, z: 0.03883231, w: 0.9581508}
+  m_LocalRotation: {x: 0.23624142, y: -0.14028965, z: 0.034490995, w: 0.960895}
   m_LocalPosition: {x: 4.9900002, y: 9.07, z: -23.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -43619,10 +43619,10 @@ MonoBehaviour:
   rect: {fileID: 1192571952}
   countText: {fileID: 1631768920}
   prefab: {fileID: 3634007238864512755, guid: cbc10cd2bcb4aea44b83c22eab61e9ce, type: 3}
-  spawnDistance: 7000
+  spawnDistance: 8000
   spawnScale: 40
-  cleareLine: 0
-  updatePosition: 1
+  cleareLine: 1
+  updatePosition: 0
   tutor: {fileID: 931025598}
 --- !u!114 &932116405
 MonoBehaviour:
@@ -43641,7 +43641,7 @@ MonoBehaviour:
   - {fileID: 616904363}
   - {fileID: 42471478}
   targetPos: {fileID: 331080487}
-  moveTime: 0.3
+  moveTime: 0.2
 --- !u!1 &932390167
 GameObject:
   m_ObjectHideFlags: 0
@@ -67991,7 +67991,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -480, y: -1871}
+  m_AnchoredPosition: {x: -480, y: -470}
   m_SizeDelta: {x: 2440.163, y: 296.833}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1439078400
@@ -105159,7 +105159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.34117648, g: 0.10980392, b: 0.59607846, a: 0.5529412}
+  m_Color: {r: 0.34117648, g: 0.10980392, b: 0.59607846, a: 0.11764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -105215,7 +105215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1481070566815780917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106287,7 +106287,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3773659483201371059}
-  m_LocalRotation: {x: 0.23556674, y: -0.15794764, z: 0.03883231, w: 0.9581508}
+  m_LocalRotation: {x: 0.23624142, y: -0.14028965, z: 0.034490995, w: 0.960895}
   m_LocalPosition: {x: 4.9900002, y: 9.07, z: -23.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -106921,7 +106921,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5901452233919518728
 Transform:
   m_ObjectHideFlags: 0
