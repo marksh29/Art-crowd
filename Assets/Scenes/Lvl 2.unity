@@ -7409,7 +7409,7 @@ MonoBehaviour:
   countText: {fileID: 1631768920}
   prefab: {fileID: 3634007238864512755, guid: cbc10cd2bcb4aea44b83c22eab61e9ce, type: 3}
   spawnDistance: 7000
-  spawnScale: 0
+  spawnScale: 30
   cleareLine: 0
   updatePosition: 1
   tutor: {fileID: 8309265}
