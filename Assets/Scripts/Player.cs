@@ -103,6 +103,10 @@ public class Player : MonoBehaviour
                 else
                     RemoveScale(coll.gameObject.transform.parent.gameObject.GetComponent<Gate>());
             }
+            if (coll.gameObject.tag == "Mnoj")
+            {
+                SpawnNewMan(coll.gameObject.transform.parent.gameObject.GetComponent<Gate>().SetGate());
+            }
         }       
     }
 
@@ -168,5 +172,21 @@ public class Player : MonoBehaviour
         gameObject.tag = "Untagged";
         SetAnimation("move");
         StartCoroutine(Effect(1));
+    }
+
+    public void SpawnNewMan(int id)
+    {
+        GameObject obj = Instantiate(gameObject, transform.parent) as GameObject;       
+        Line.Instance.AddObj(obj);
+        obj.GetComponent<Player>().Drop();
+        obj.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + 0.3f);
+    }
+    public void Drop()
+    {
+        life = 1;
+        skin.SetBlendShapeWeight(0, 100);
+        transform.localScale = new Vector3(0.077f, 0.7f, 0.1f);
+        SetAnimation("move");
+        Line.Instance.SetCount();
     }
 }
