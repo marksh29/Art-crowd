@@ -188,5 +188,6 @@ public class Player : MonoBehaviour
         transform.localScale = new Vector3(0.077f, 0.7f, 0.1f);
         SetAnimation("move");
         Line.Instance.SetCount();
+        StartCoroutine(Effect(1));
     }
 }
