@@ -37,7 +37,7 @@ public class Line : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && lineOn)
         {
-            tutor.SetActive(false);
+            tutor.SetActive(false);           
             CleareLine();
         }
         if (Input.GetMouseButton(0) && lineOn)
@@ -54,6 +54,10 @@ public class Line : MonoBehaviour
         }
         if(Input.GetMouseButtonUp(0))
         {
+            if (lineObj.Count > 0)
+            {
+                Controll.Instance.StartLevel();
+            }
             OffLine();
             if (cleareLine)
                 CleareLine();

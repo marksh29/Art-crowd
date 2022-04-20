@@ -22,7 +22,7 @@ public class Controll : MonoBehaviour
     {
         leveltext.text = "LEVEL " + (PlayerPrefs.GetInt("level") + 1).ToString();
         PathPlacer.Instance.Off();
-        Set_state("Menu");
+        //Set_state("Game");
     }
   
     public void Set_state(string name)
