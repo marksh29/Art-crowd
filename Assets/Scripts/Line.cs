@@ -35,13 +35,14 @@ public class Line : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && Controll.Instance._state =="Game")
-        {           
+        if (Input.GetMouseButtonDown(0) && lineOn)
+        {
+            tutor.SetActive(false);
             CleareLine();
         }
         if (Input.GetMouseButton(0) && lineOn)
         {
-            tutor.SetActive(false);
+           
             if (lineObj.Count < gameObj.Count && (lineObj.Count == 0 || dist >= spawnDistance))
             {
                 SpawnObj();
