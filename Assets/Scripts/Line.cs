@@ -5,14 +5,14 @@ using TMPro;
 public class Line : MonoBehaviour
 {
     public static Line Instance;
-    [SerializeField] List<GameObject> lineObj, gameObj;
+    public List<GameObject> lineObj, gameObj;
     [SerializeField] RectTransform rect;
     [SerializeField] TextMeshPro countText;
     [SerializeField] GameObject prefab;
-    [SerializeField] float spawnDistance, spawnScale;
+    [SerializeField] float spawnDistance, spawnScale, addZ;
     float dist;
-    [SerializeField] bool cleareLine, updatePosition;
-    bool lineOn;
+    public bool cleareLine, updatePosition;
+    [HideInInspector] public bool lineOn;
     [SerializeField] GameObject tutor;
     [SerializeField] bool massCounter;
          
@@ -34,7 +34,6 @@ public class Line : MonoBehaviour
         for (int i = 0; i < gameObj.Count; i++)
         {
             gameObj[i].GetComponent<Player>().SetAnimation(name);
-            gameObj[i].GetComponent<Player>().LifeCount(!massCounter);
         }
     }
 
@@ -46,8 +45,7 @@ public class Line : MonoBehaviour
             CleareLine();
         }
         if (Input.GetMouseButton(0) && lineOn)
-        {
-           
+        {           
             if (lineObj.Count < gameObj.Count && (lineObj.Count == 0 || dist >= spawnDistance))
             {
                 SpawnObj();
@@ -63,7 +61,7 @@ public class Line : MonoBehaviour
             {
                 Controll.Instance.StartLevel();
             }
-            OffLine();
+            SetPos();
             if (cleareLine)
                 CleareLine();
         }
@@ -77,7 +75,7 @@ public class Line : MonoBehaviour
         obj.GetComponent<RectTransform>().sizeDelta = new Vector2(spawnScale, spawnScale);
         lineObj.Add(obj);
         if (updatePosition)
-            OffLine();
+            SetPos();
     }
     void CleareLine()
     {
@@ -95,18 +93,28 @@ public class Line : MonoBehaviour
         {
             float xx = 0.5f / (rect.sizeDelta.x / 2);
             float yy = 0.4f / (rect.sizeDelta.y / 2);
-            Vector3 newPos = new Vector3(lineObj[i].GetComponent<RectTransform>().anchoredPosition.x * xx, 1, lineObj[i].GetComponent<RectTransform>().anchoredPosition.y * yy);
+            Vector3 newPos = new Vector3(lineObj[i].GetComponent<RectTransform>().anchoredPosition.x * xx, gameObj[i].transform.localPosition.y, lineObj[i].GetComponent<RectTransform>().anchoredPosition.y * yy);
             gameObj[i].GetComponent<Player>().SetStarget(newPos);
+        }
+        if (gameObj.Count > lineObj.Count && !updatePosition)
+        {
+            for (int i = count; i < gameObj.Count; i++)
+            {
+                Player curPl = gameObj[i - lineObj.Count].GetComponent<Player>();
+                Vector3 newPos = new Vector3(curPl.targetPos.x, gameObj[i].transform.localPosition.y, curPl.targetPos.z - addZ);
+                gameObj[i].GetComponent<Player>().SetStarget(newPos);
+            }
         }
     }
     public void SetLine()
     {
         lineOn = true;
     }
-    public void OffLine()
-    {
-        SetPos();     
-    }
+    //public void OffLine()
+    //{
+    //    SetPos();     
+    //}
+
     public void Off()
     {
         lineOn = false;
@@ -115,6 +123,7 @@ public class Line : MonoBehaviour
     public void AddObj(GameObject obj)
     {
         gameObj.Add(obj);
+        obj.GetComponent<Player>().LifeCount(!massCounter);
         SetCount();        
     }
     public void RemoveObj(GameObject obj)

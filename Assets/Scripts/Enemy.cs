@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] TextMeshPro txt;
     [SerializeField] int count;
+    [SerializeField] bool massCounter;
     void Start()
     {
         count = transform.childCount -1;

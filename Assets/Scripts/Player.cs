@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     [SerializeField] Material mat;
 
     [SerializeField] TextMeshPro lifeText;
+    [HideInInspector] public Vector3 targetPos;
+    bool move;
     void Awake()
     {
         life = life == 0 ? 1 : life;
@@ -30,7 +32,14 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        
+        if(move)
+        {
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetPos, moveTime * Time.deltaTime);
+            if(transform.localPosition == targetPos)
+            {
+                move = false;
+            }
+        }    
     }
     public void SetAnimation(string name)
     {
@@ -38,11 +47,13 @@ public class Player : MonoBehaviour
     }
     public void SetStarget(Vector3 target)
     {
+        targetPos = target;
         if(corr != null)
             StopCoroutine(corr);
         targetPosition = new Vector3(target.x, transform.localPosition.y, target.z);
-        corr = DoMove((transform.localPosition - targetPosition).sqrMagnitude * moveTime);
-        StartCoroutine(corr);
+        move = true;
+        //corr = DoMove((transform.localPosition - targetPosition).sqrMagnitude * moveTime);
+        //StartCoroutine(corr);
     }
     private IEnumerator DoMove(float time)
     {
@@ -64,7 +75,7 @@ public class Player : MonoBehaviour
             {
                 end = true;
                 SetAnimation("fall");
-                StopCoroutine(corr);
+                //StopCoroutine(corr);
                 gameObject.layer = 6;
                 GetComponent<Rigidbody>().isKinematic = false;
                 GetComponent<Rigidbody>().useGravity = true;
@@ -186,7 +197,7 @@ public class Player : MonoBehaviour
         GameObject obj = Instantiate(gameObject, transform.parent) as GameObject;       
         Line.Instance.AddObj(obj);
         obj.GetComponent<Player>().Drop();
-        obj.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + 0.3f);
+        obj.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + 0.3f);        
     }
     public void Drop()
     {
@@ -196,6 +207,7 @@ public class Player : MonoBehaviour
         SetAnimation("move");
         Line.Instance.SetCount();
         StartCoroutine(Effect(1));
+        lifeText.text = life.ToString();
     }
 
     public void LifeCount(bool id)
