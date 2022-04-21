@@ -40,19 +40,18 @@ public class Player : MonoBehaviour
     {
         if(corr != null)
             StopCoroutine(corr);
-
         targetPosition = new Vector3(target.x, transform.localPosition.y, target.z);
-        corr = DoMove();
+        corr = DoMove((transform.localPosition - targetPosition).sqrMagnitude * moveTime);
         StartCoroutine(corr);
     }
-    private IEnumerator DoMove()
+    private IEnumerator DoMove(float time)
     {
         Vector3 startPosition = transform.localPosition;
         float startTime = Time.realtimeSinceStartup;
         float fraction = 0f;
         while (fraction < 1f)
         {
-            fraction = Mathf.Clamp01((Time.realtimeSinceStartup - startTime) / moveTime);
+            fraction = Mathf.Clamp01((Time.realtimeSinceStartup - startTime) / time);
             transform.localPosition = Vector3.Lerp(startPosition, targetPosition, fraction);
             yield return null;
         }

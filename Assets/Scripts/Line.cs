@@ -22,7 +22,10 @@ public class Line : MonoBehaviour
     }
     void Start()
     {
-        //End(false);
+        for (int i = 0; i < gameObj.Count; i++)
+        {
+            gameObj[i].GetComponent<Player>().LifeCount(!massCounter);
+        }
         SetCount();
     }
     public void StartGame(string name)
