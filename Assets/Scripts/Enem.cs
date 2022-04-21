@@ -40,5 +40,9 @@ public class Enem : MonoBehaviour
         else
             GetComponent<Animator>().SetTrigger("hit");
         return (curLife + damage);
-    }   
+    } 
+    public void CounterOff(bool id)
+    {
+        lifeText.gameObject.SetActive(id);
+    }
 }

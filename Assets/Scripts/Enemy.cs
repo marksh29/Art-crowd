@@ -11,6 +11,11 @@ public class Enemy : MonoBehaviour
     {
         count = transform.childCount -1;
         SetCount();
+        txt.transform.parent.gameObject.SetActive(massCounter);
+        for (int i = 1; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.GetComponent<Enem>().CounterOff(!massCounter);
+        }
     }
     public void RemoveCount()
     {
