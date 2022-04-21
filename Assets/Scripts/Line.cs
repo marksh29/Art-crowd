@@ -14,22 +14,24 @@ public class Line : MonoBehaviour
     [SerializeField] bool cleareLine, updatePosition;
     bool lineOn;
     [SerializeField] GameObject tutor;
-
+    [SerializeField] bool massCounter;
+         
     private void Awake()
     {
-        if (Instance == null) Instance = this;
-
+        if (Instance == null) Instance = this;        
     }
     void Start()
     {
-        End(false);
+        //End(false);
         SetCount();
     }
     public void StartGame(string name)
     {
+        countText.transform.parent.gameObject.SetActive(massCounter);
         for (int i = 0; i < gameObj.Count; i++)
         {
             gameObj[i].GetComponent<Player>().SetAnimation(name);
+            gameObj[i].GetComponent<Player>().LifeCount(!massCounter);
         }
     }
 

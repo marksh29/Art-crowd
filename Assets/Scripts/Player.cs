@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
 public class Player : MonoBehaviour
 {
     [SerializeField] float moveTime;
@@ -17,7 +18,9 @@ public class Player : MonoBehaviour
     bool end;
     [SerializeField] GameObject deadEffect, goldEffect;
     [SerializeField] Material mat;
-    void Start()
+
+    [SerializeField] TextMeshPro lifeText;
+    void Awake()
     {
         life = life == 0 ? 1 : life;
 
@@ -119,6 +122,7 @@ public class Player : MonoBehaviour
         skin.SetBlendShapeWeight(0, scale < 0 ? 0 : scale);
         AddScales(transform.parent, addScale);
         Line.Instance.SetCount();
+        lifeText.text = life.ToString();
     }
     void RemoveScale(Gate gate)
     {
@@ -128,12 +132,15 @@ public class Player : MonoBehaviour
         float scale = skin.GetBlendShapeWeight(0) + (addShape * cnt);
         skin.SetBlendShapeWeight(0, scale > 100 ? 100 : scale);
         AddScales(transform.parent, -addScale);
+        lifeText.text = life.ToString();
     }   
     public void Damage(Enem enemy)
     {
-        enemy.Kill(life);
-        life -= enemy.life;
+        life -= enemy.Kill(life);
+        //life -= enemy.curLife;
+        //enemy.Kill(life);       
         Line.Instance.SetCount();
+        lifeText.text = life.ToString();
 
         if (changeScaleForDamage)
         {           
@@ -144,6 +151,7 @@ public class Player : MonoBehaviour
         
         if (life <= 0)
         {
+            lifeText.transform.parent.gameObject.SetActive(false);
             SetAnimation("fall");
             end = true;            
             transform.parent = null;
@@ -189,5 +197,11 @@ public class Player : MonoBehaviour
         SetAnimation("move");
         Line.Instance.SetCount();
         StartCoroutine(Effect(1));
+    }
+
+    public void LifeCount(bool id)
+    {
+        lifeText.transform.parent.gameObject.SetActive(id);
+        lifeText.text = life.ToString();
     }
 }

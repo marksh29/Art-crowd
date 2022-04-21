@@ -19,8 +19,9 @@ public class Enem : MonoBehaviour
     {        
         GetComponent<Animator>().SetTrigger("enemy");
     }
-    public void Kill(int damage)
-    {
+
+    public int Kill(int damage)
+    {       
         curLife -= damage;
         transform.parent.gameObject.GetComponent<Enemy>().SetCount();
 
@@ -34,8 +35,13 @@ public class Enem : MonoBehaviour
             Destroy(gameObject, 3);
             GameObject eff = Instantiate(deadEffect, new Vector3(transform.position.x, 1, transform.position.z), transform.rotation) as GameObject;
             Destroy(eff, 1);
-        } 
+        }
         else
-            GetComponent<Animator>().SetTrigger("hit");        
+            GetComponent<Animator>().SetTrigger("hit");
+        return (curLife + damage);
     }
+    //public void Kill(int damage)
+    //{
+                
+    //}
 }

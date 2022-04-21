@@ -49,7 +49,7 @@ public class Controll : MonoBehaviour
     public void StartLevel()
     {
         Line.Instance.StartGame("move");
-        Line.Instance.End(true);
+        //Line.Instance.End(true);
         Set_state("Game");        
     }
     public void Restart()
