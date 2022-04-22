@@ -678,6 +678,18 @@ PrefabInstance:
       propertyPath: InitialModule.startColor.maxColor.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 19853942, guid: dff0fd5524b08754e9e2b68478c827b3, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.25490198
+      objectReference: {fileID: 0}
+    - target: {fileID: 19853942, guid: dff0fd5524b08754e9e2b68478c827b3, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.26630145
+      objectReference: {fileID: 0}
+    - target: {fileID: 19853942, guid: dff0fd5524b08754e9e2b68478c827b3, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.54901963
+      objectReference: {fileID: 0}
     - target: {fileID: 19911190, guid: dff0fd5524b08754e9e2b68478c827b3, type: 3}
       propertyPath: m_UseCustomVertexStreams
       value: 1
