@@ -930,8 +930,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5417104705392333432}
-  - {fileID: 5417104706020172764}
   - {fileID: 5417104706013579173}
+  - {fileID: 5417104706020172764}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -49.091, z: 0}
@@ -2608,7 +2608,7 @@ Transform:
   m_LocalScale: {x: 3, y: 0.3, z: 3}
   m_Children: []
   m_Father: {fileID: 5417104704853332378}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5417104706013579194
 MeshFilter:
@@ -2694,7 +2694,7 @@ Transform:
   - {fileID: 5417104705971595499}
   - {fileID: 8521838407661797570}
   m_Father: {fileID: 5417104704853332378}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 168.937, z: 0}
 --- !u!95 &5417104706020172752
 Animator:

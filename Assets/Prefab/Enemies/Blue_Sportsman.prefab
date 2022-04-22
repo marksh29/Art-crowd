@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 3, y: 0.3, z: 3}
   m_Children: []
   m_Father: {fileID: 6959961566150553018}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4506925075339209971
 MeshFilter:
@@ -2944,10 +2944,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6959961566972619129}
+  - {fileID: 6434993963886180717}
   - {fileID: 6959961566932957223}
   - {fileID: 6959961566827477118}
   - {fileID: 6959961566504543662}
-  - {fileID: 6434993963886180717}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 31.306, z: 0}
@@ -3658,7 +3658,7 @@ Transform:
   - {fileID: 6959961565454530734}
   - {fileID: 6356773887840516460}
   m_Father: {fileID: 6959961566150553018}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 170.389, z: 0}
 --- !u!95 &6959961566504543698
 Animator:
@@ -4243,7 +4243,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 2d0a625fbc645fc44b5a5df168e497d1, type: 2}
-  - {fileID: 3511325375820423461, guid: 81f881a16a3995c408ebb9a554dd87a6, type: 3}
+  - {fileID: 2100000, guid: 61aa4d257f573a54b829680e570094a8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4552,7 +4552,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 2d0a625fbc645fc44b5a5df168e497d1, type: 2}
-  - {fileID: 3511325375820423461, guid: 81f881a16a3995c408ebb9a554dd87a6, type: 3}
+  - {fileID: 2100000, guid: 61aa4d257f573a54b829680e570094a8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4663,7 +4663,7 @@ Transform:
   - {fileID: 6959961565156523014}
   - {fileID: 8714595823596420643}
   m_Father: {fileID: 6959961566150553018}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 170.389, z: 0}
 --- !u!95 &6959961566827477090
 Animator:
@@ -4938,7 +4938,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 2d0a625fbc645fc44b5a5df168e497d1, type: 2}
-  - {fileID: 3511325375820423461, guid: 81f881a16a3995c408ebb9a554dd87a6, type: 3}
+  - {fileID: 2100000, guid: 61aa4d257f573a54b829680e570094a8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5204,7 +5204,7 @@ Transform:
   - {fileID: 6959961565745609579}
   - {fileID: 2738298883081188064}
   m_Father: {fileID: 6959961566150553018}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 170.389, z: 0}
 --- !u!95 &6959961566932957227
 Animator:
