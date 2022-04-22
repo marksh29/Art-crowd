@@ -118,14 +118,14 @@ public class Player : MonoBehaviour
             }
             if (coll.gameObject.tag == "Mnoj")
             {
-                SpawnNewMan(coll.gameObject.transform.parent.gameObject.GetComponent<Gate>().SetGate());
+                SpawnNewMan(coll.gameObject.transform.parent.gameObject.GetComponent<Gate>().SetGate());               
             }
         }       
     }
 
     void AddScale(Gate gate)
     {
-        StartCoroutine(Effect(0));
+        StartCoroutine(Effect(1));
         int cnt = gate.SetGate();       
         life += cnt;
         float scale = skin.GetBlendShapeWeight(0) -(addShape * cnt);
@@ -136,7 +136,7 @@ public class Player : MonoBehaviour
     }
     void RemoveScale(Gate gate)
     {
-        StartCoroutine(Effect(0));
+        StartCoroutine(Effect(2));
         int cnt = life <= gate.count ? life -1 : Mathf.Abs(gate.SetGate());
         life -= cnt;        
         float scale = skin.GetBlendShapeWeight(0) + (addShape * cnt);
@@ -189,7 +189,7 @@ public class Player : MonoBehaviour
         gameObject.transform.localRotation = Quaternion.Euler(0, pl.localRotation.y, 0);
         gameObject.tag = "Untagged";
         SetAnimation("move");
-        StartCoroutine(Effect(1));
+        StartCoroutine(Effect(0));
     }
 
     public void SpawnNewMan(int id)
@@ -206,7 +206,7 @@ public class Player : MonoBehaviour
         transform.localScale = new Vector3(0.077f, 0.7f, 0.1f);
         SetAnimation("move");
         Line.Instance.SetCount();
-        StartCoroutine(Effect(1));
+        StartCoroutine(Effect(0));
         lifeText.text = life.ToString();
     }
 

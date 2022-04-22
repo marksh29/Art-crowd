@@ -47,13 +47,16 @@ public class PlayerControll : MonoBehaviour
     }
     public void Lose()
     {
+        Line.Instance.CleareLine();
+        Controll.Instance.Set_state("End");
         Controll.Instance.Set_state("Lose");
         path.speed = 0;      
     }
     public void Win()
     {
-        Line.Instance.StartGame("stay");
+        Line.Instance.CleareLine();
         Controll.Instance.Set_state("End");
+        Line.Instance.StartGame("stay");       
         Gener.Instance.StartEnd(money - 1);
         path.speed = 0;
     }

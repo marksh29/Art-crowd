@@ -39,12 +39,12 @@ public class Line : MonoBehaviour
 
     void Update()
     {        
-        if (Input.GetMouseButtonDown(0) && lineOn)
+        if (Input.GetMouseButtonDown(0) && lineOn && (Controll.Instance._state == "Menu" || Controll.Instance._state == "Game"))
         {
             tutor.SetActive(false);           
             CleareLine();
         }
-        if (Input.GetMouseButton(0) && lineOn)
+        if (Input.GetMouseButton(0) && lineOn && (Controll.Instance._state == "Menu" || Controll.Instance._state == "Game"))
         {           
             if (lineObj.Count < gameObj.Count && (lineObj.Count == 0 || dist >= spawnDistance))
             {
@@ -55,9 +55,9 @@ public class Line : MonoBehaviour
                 dist = (lineObj[lineObj.Count - 1].transform.position - Input.mousePosition).sqrMagnitude;
             }          
         }
-        if(Input.GetMouseButtonUp(0))
+        if(Input.GetMouseButtonUp(0) && (Controll.Instance._state == "Menu" || Controll.Instance._state == "Game"))
         {
-            if (lineObj.Count > 0)
+            if (lineObj.Count > 0 && Controll.Instance._state == "Menu")
             {
                 Controll.Instance.StartLevel();
             }
@@ -77,7 +77,7 @@ public class Line : MonoBehaviour
         if (updatePosition)
             SetPos();
     }
-    void CleareLine()
+    public void CleareLine()
     {
         for (int i = 0; i < lineObj.Count; i++)
         {
@@ -113,11 +113,7 @@ public class Line : MonoBehaviour
     {
         lineOn = true;
     }
-    //public void OffLine()
-    //{
-    //    SetPos();     
-    //}
-
+   
     public void Off()
     {
         lineOn = false;
