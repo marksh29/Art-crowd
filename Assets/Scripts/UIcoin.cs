@@ -29,11 +29,12 @@ public class UIcoin : MonoBehaviour
         {
             GameObject obj = PoolControll.Instance.Spawn("Money");
             obj.transform.parent = parent;
+            obj.transform.position = stPos;
             obj.GetComponent<RectTransform>().sizeDelta = new Vector3(moneyScale, moneyScale, 1);
             list.Add(obj);
-            x = Random.Range(-x, x); //Для разброса при появлении
-            y = Random.Range(-y, y);            
-            obj.GetComponent<RectTransform>().position = new Vector3(stPos.x + x, stPos.y + y, stPos.z);   
+            float xx = Random.Range(-x, x); //Для разброса при появлении         
+            float yy = Random.Range(-y, y);
+            obj.GetComponent<RectTransform>().position = new Vector3(obj.GetComponent<RectTransform>().position.x + xx, obj.GetComponent<RectTransform>().position.y + yy, obj.GetComponent<RectTransform>().position.z);
             obj.SetActive(true);
         }
         for (int l = 0; l < list.Count; l++)

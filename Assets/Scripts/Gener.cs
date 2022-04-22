@@ -22,7 +22,12 @@ public class Gener : MonoBehaviour
     {
         GameObject[] mon = GameObject.FindGameObjectsWithTag("Money");
         GameObject[] en = GameObject.FindGameObjectsWithTag("Enemy");
-        count = mon.Length + en.Length;
+
+        count = mon.Length;
+        for (int i = 0; i < en.Length; i++)
+        {
+            count += en[i].GetComponent<Enem>().life;
+        }        
 
         for (int i = 0; i < count; i++)
         {
@@ -67,10 +72,10 @@ public class Gener : MonoBehaviour
 
     IEnumerator End(int id)
     {
-        for (int i = 0; i < id; i++)
+        for (int i = 0; i < list.Count; i++)
         {
-            cam.Follow = list[i].transform;
             list[i].SetActive(true);
+            cam.Follow = list[i].transform;           
             confeti.transform.localPosition = new Vector3(confeti.transform.localPosition.x, list[i].transform.localPosition.y, confeti.transform.localPosition.z);
             yield return new WaitForSeconds(onTime);
         }

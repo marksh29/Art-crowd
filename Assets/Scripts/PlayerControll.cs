@@ -54,7 +54,7 @@ public class PlayerControll : MonoBehaviour
     {
         Line.Instance.StartGame("stay");
         Controll.Instance.Set_state("End");
-        Gener.Instance.StartEnd(money);
+        Gener.Instance.StartEnd(money - 1);
         path.speed = 0;
     }
 }

@@ -38,7 +38,7 @@ public class Line : MonoBehaviour
     }
 
     void Update()
-    {
+    {        
         if (Input.GetMouseButtonDown(0) && lineOn)
         {
             tutor.SetActive(false);           
@@ -88,23 +88,26 @@ public class Line : MonoBehaviour
 
     void SetPos()
     {
-        int count = gameObj.Count > lineObj.Count ? lineObj.Count : gameObj.Count;
-        for (int i = 0; i < count; i++)
+        if(Controll.Instance._state == "Game")
         {
-            float xx = 0.5f / (rect.sizeDelta.x / 2);
-            float yy = 0.4f / (rect.sizeDelta.y / 2);
-            Vector3 newPos = new Vector3(lineObj[i].GetComponent<RectTransform>().anchoredPosition.x * xx, gameObj[i].transform.localPosition.y, lineObj[i].GetComponent<RectTransform>().anchoredPosition.y * yy);
-            gameObj[i].GetComponent<Player>().SetStarget(newPos);
-        }
-        if (gameObj.Count > lineObj.Count && !updatePosition)
-        {
-            for (int i = count; i < gameObj.Count; i++)
+            int count = gameObj.Count > lineObj.Count ? lineObj.Count : gameObj.Count;
+            for (int i = 0; i < count; i++)
             {
-                Player curPl = gameObj[i - lineObj.Count].GetComponent<Player>();
-                Vector3 newPos = new Vector3(curPl.targetPos.x, gameObj[i].transform.localPosition.y, curPl.targetPos.z - addZ);
+                float xx = 0.5f / (rect.sizeDelta.x / 2);
+                float yy = 0.4f / (rect.sizeDelta.y / 2);
+                Vector3 newPos = new Vector3(lineObj[i].GetComponent<RectTransform>().anchoredPosition.x * xx, gameObj[i].transform.localPosition.y, lineObj[i].GetComponent<RectTransform>().anchoredPosition.y * yy);
                 gameObj[i].GetComponent<Player>().SetStarget(newPos);
             }
-        }
+            if (gameObj.Count > lineObj.Count && !updatePosition)
+            {
+                for (int i = count; i < gameObj.Count; i++)
+                {
+                    Player curPl = gameObj[i - lineObj.Count].GetComponent<Player>();
+                    Vector3 newPos = new Vector3(curPl.targetPos.x, gameObj[i].transform.localPosition.y, curPl.targetPos.z - addZ);
+                    gameObj[i].GetComponent<Player>().SetStarget(newPos);
+                }
+            }
+        }       
     }
     public void SetLine()
     {

@@ -2208,7 +2208,7 @@ GameObject:
   - component: {fileID: 217859896}
   - component: {fileID: 217859895}
   m_Layer: 5
-  m_Name: UpImage (1)
+  m_Name: Money
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2230,7 +2230,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 141, y: 141}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &217859895
@@ -2705,7 +2705,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 269167176}
-  m_LocalRotation: {x: 0.2677797, y: 0.0055587227, z: -0.0015449615, w: 0.9634629}
+  m_LocalRotation: {x: 0.26777974, y: 0.005558726, z: -0.0015449625, w: 0.9634629}
   m_LocalPosition: {x: -0.02, y: 12.07, z: -27.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10450,10 +10450,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveTime: 0.5
   waitToMoveTime: 0.1
-  x: 100
-  y: 100
+  x: 50
+  y: 50
   moneyScale: 40
-  prefab: {fileID: 217859893}
   targetPos: {fileID: 331080487}
   parent: {fileID: 1450880235625203020}
 --- !u!114 &932116406
@@ -26149,7 +26148,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3773659483201371059}
-  m_LocalRotation: {x: 0.2677797, y: 0.0055587227, z: -0.0015449615, w: 0.9634629}
+  m_LocalRotation: {x: 0.26777974, y: 0.005558726, z: -0.0015449625, w: 0.9634629}
   m_LocalPosition: {x: -0.02, y: 12.07, z: -27.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
