@@ -125,8 +125,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30.25
-  m_fontSizeBase: 30.25
+  m_fontSize: 17
+  m_fontSizeBase: 17
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -406,7 +406,7 @@ Transform:
   m_GameObject: {fileID: 3104916917467951643}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5.26, y: 0, z: -8.200005}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_Children:
   - {fileID: 3104916917038260438}
   - {fileID: 3104916917313064353}
@@ -429,7 +429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oneShoot: 0
-  count: -5
+  count: -1
   gate: {fileID: 3104916916826507120}
 --- !u!1001 &3104916915845933515
 PrefabInstance:

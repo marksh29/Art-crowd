@@ -3542,7 +3542,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 2035758367}
   m_Follow: {fileID: 2035758367}
   m_Lens:
-    FieldOfView: 45
+    FieldOfView: 40
     OrthographicSize: 50
     NearClipPlane: 0.45
     FarClipPlane: 3001.68
@@ -3563,7 +3563,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 269167176}
-  m_LocalRotation: {x: 0.26774812, y: -0.0006787357, z: 0.00018861688, w: 0.9634887}
+  m_LocalRotation: {x: 0.26774332, y: -0.005786294, z: 0.0016079785, w: 0.9634716}
   m_LocalPosition: {x: -0.02, y: 12.07, z: -27.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -17610,7 +17610,7 @@ GameObject:
   - component: {fileID: 1439078402}
   - component: {fileID: 1439078401}
   - component: {fileID: 1439078400}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: 'LevelCountText '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17633,7 +17633,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -25, y: 2343.469}
+  m_AnchoredPosition: {x: -25, y: -59}
   m_SizeDelta: {x: 1530.1631, y: 296.833}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1439078400
@@ -25857,7 +25857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f036c9f97e730447b28797aca25bc3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 7
   addMoney: 1
   path: {fileID: 2035758368}
   moneyText: {fileID: 2084570729}
@@ -31147,7 +31147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.19607843}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -31303,7 +31303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.33939078, g: 0.10933607, b: 0.5943396, a: 0.3137255}
+  m_Color: {r: 0.33939078, g: 0.10933607, b: 0.5943396, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -35097,7 +35097,7 @@ Camera:
     height: 1
   near clip plane: 0.45
   far clip plane: 3001.68
-  field of view: 45
+  field of view: 40
   orthographic: 0
   orthographic size: 50
   m_Depth: -1
@@ -35122,7 +35122,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3773659483201371059}
-  m_LocalRotation: {x: 0.26774812, y: -0.0006787357, z: 0.00018861688, w: 0.9634887}
+  m_LocalRotation: {x: 0.26774332, y: -0.005786294, z: 0.0016079785, w: 0.9634716}
   m_LocalPosition: {x: -0.02, y: 12.07, z: -27.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
