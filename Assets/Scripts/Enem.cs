@@ -31,11 +31,11 @@ public class Enem : MonoBehaviour
             lifeText.transform.parent.gameObject.SetActive(false);
             GetComponent<Animator>().SetTrigger("fall");
             gameObject.tag = "Untagged";
-            transform.parent.gameObject.GetComponent<Enemy>().RemoveCount();
-            UIcoin.Instance.MoveOn(gameObject.transform, 3);
+            transform.parent.gameObject.GetComponent<Enemy>().RemoveCount();           
             Destroy(gameObject, 3);
             GameObject eff = Instantiate(deadEffect, new Vector3(transform.position.x, 1, transform.position.z), transform.rotation) as GameObject;
             Destroy(eff, 1);
+            UIcoin.Instance.MoveOn(gameObject.transform, life);
         }
         else
             GetComponent<Animator>().SetTrigger("hit");

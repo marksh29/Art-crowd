@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class UIcoin : MonoBehaviour
 {
-    public static UIcoin Instance;
-    [SerializeField] Transform[] moveCoins;
-    [SerializeField] Transform targetPos;
-    [SerializeField] float moveTime;
-
-    //float x;
-    //float y;
-    //float z;
-
+    public static UIcoin Instance;   
+    [SerializeField] float moveTime, waitToMoveTime;
+    [SerializeField] float x, y, moneyScale;
+    [SerializeField] Transform targetPos, parent;
     void Start()
     {
         if (Instance == null)
@@ -29,19 +24,23 @@ public class UIcoin : MonoBehaviour
     IEnumerator StartMove(Transform pos, int count)
     {
         Vector3 stPos = Camera.main.WorldToScreenPoint(pos.position);
+        List<GameObject> list = new List<GameObject>();
         for (int i = 0; i < count; i++)
         {
-
-            //x = Random.Range(-100, 100); Для разброса при появлении
-            //y = Random.Range(-100, 100);
-            //z = 0;
-            //stPos = stPos + new Vector3(x, y, z);
-
-            moveCoins[i].position = stPos;
-            moveCoins[i].gameObject.SetActive(true);
-            StartCoroutine(DoMove(moveCoins[i]));
-            yield return new WaitForSeconds(0.1f);
+            GameObject obj = PoolControll.Instance.Spawn("Money");
+            obj.transform.parent = parent;
+            obj.GetComponent<RectTransform>().sizeDelta = new Vector3(moneyScale, moneyScale, 1);
+            list.Add(obj);
+            x = Random.Range(-x, x); //Для разброса при появлении
+            y = Random.Range(-y, y);            
+            obj.GetComponent<RectTransform>().position = new Vector3(stPos.x + x, stPos.y + y, stPos.z);   
+            obj.SetActive(true);
         }
+        for (int l = 0; l < list.Count; l++)
+        {
+            StartCoroutine(DoMove(list[l].transform));
+            yield return new WaitForSeconds(waitToMoveTime);         
+        }        
     }
     IEnumerator Scale()
     {
