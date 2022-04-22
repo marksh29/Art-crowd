@@ -428,7 +428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0225e12b49421a54180451e0a6ebe1f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oneShoot: 1
+  oneShoot: 0
   count: -5
   gate: {fileID: 3104916916826507120}
 --- !u!1001 &3104916915845933515
