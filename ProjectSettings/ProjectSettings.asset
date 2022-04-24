@@ -234,12 +234,12 @@ PlayerSettings:
   useCustomMainGradleTemplate: 1
   useCustomLauncherGradleManifest: 1
   useCustomBaseGradleTemplate: 0
-  useCustomGradlePropertiesTemplate: 0
+  useCustomGradlePropertiesTemplate: 1
   useCustomProguardFile: 0
   AndroidTargetArchitectures: 3
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: '{dedicated}: ArtCrowd/user.keystore'
+  AndroidKeystoreName: '{dedicated}: .android/art_crowd.keystore'
   AndroidKeyaliasName: artcrowd
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
