@@ -1743,7 +1743,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 1
-  m_LookAt: {fileID: 2035758367}
+  m_LookAt: {fileID: 55673538}
   m_Follow: {fileID: 2035758367}
   m_Lens:
     FieldOfView: 40
@@ -1767,7 +1767,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 269167176}
-  m_LocalRotation: {x: 0.26773492, y: -0.00959541, z: 0.002666511, w: 0.96344113}
+  m_LocalRotation: {x: 0.2655813, y: 0, z: 0, w: 0.9640885}
   m_LocalPosition: {x: -0.02, y: 12.07, z: -27.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5228,8 +5228,8 @@ MonoBehaviour:
   rect: {fileID: 1192571952}
   countText: {fileID: 1631768920}
   prefab: {fileID: 3634007238864512755, guid: cbc10cd2bcb4aea44b83c22eab61e9ce, type: 3}
-  spawnDistance: 500
-  spawnScale: 40
+  spawnDistance: 2000
+  spawnScale: 30
   addZ: 0.2
   cleareLine: 1
   updatePosition: 0
@@ -10848,11 +10848,11 @@ MonoBehaviour:
   m_BindingMode: 2
   m_FollowOffset: {x: 0, y: 12, z: -21}
   m_XDamping: 0
-  m_YDamping: 1.5
+  m_YDamping: 0
   m_ZDamping: 0
   m_AngularDampingMode: 0
   m_PitchDamping: 0
-  m_YawDamping: 5
+  m_YawDamping: 0
   m_RollDamping: 0
   m_AngularDamping: 0
 --- !u!114 &1920291836
@@ -10876,24 +10876,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1920291833}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4044717213e31446939f7bd49c896ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e8b78ac948f05a46a6d8339a503172b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TrackedObjectOffset: {x: -1.9, y: -0.7, z: 0}
-  m_LookaheadTime: 0
-  m_LookaheadSmoothing: 0
-  m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 0.5
-  m_VerticalDamping: 0.5
-  m_ScreenX: 0.285
-  m_ScreenY: 0.5
-  m_DeadZoneWidth: 0
-  m_DeadZoneHeight: 0
-  m_SoftZoneWidth: 0
-  m_SoftZoneHeight: 0
-  m_BiasX: 0
-  m_BiasY: 0
-  m_CenterOnActivate: 1
 --- !u!1001 &1938777807
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14525,7 +14510,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3773659483201371059}
-  m_LocalRotation: {x: 0.26773492, y: -0.00959541, z: 0.002666511, w: 0.96344113}
+  m_LocalRotation: {x: 0.2655813, y: 0, z: 0, w: 0.9640885}
   m_LocalPosition: {x: -0.02, y: 12.07, z: -27.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
