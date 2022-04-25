@@ -1570,7 +1570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveTime: 1
   life: 1
-  addScale: 0.2
+  addScale: 0.1
   addShape: 25
   anim: {fileID: 2604398522722398880}
   skin: {fileID: 2604398522501756642}

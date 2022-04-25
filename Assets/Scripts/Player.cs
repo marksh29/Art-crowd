@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
 
         float scale = skin.GetBlendShapeWeight(0) - (addShape * (life - 1));
         skin.SetBlendShapeWeight(0, scale < 0 ? 0 : scale);
-        AddScales(transform.parent, (addScale * (life - 1)));
+        //AddScales(transform.parent, (addScale * (life - 1)));
         startScale = transform.localScale;
     }
     private void Update()
@@ -163,7 +163,8 @@ public class Player : MonoBehaviour
             float scale = skin.GetBlendShapeWeight(0) + addShape;
             skin.SetBlendShapeWeight(0, scale > 100 ? 100 : scale);
             AddScales(transform.parent, -addScale);
-        }         
+        } 
+        
         if (life <= 0)
         {
             Dead();
@@ -189,7 +190,7 @@ public class Player : MonoBehaviour
     }
     void AddScales(Transform parent, float count)
     {
-        transform.parent = parent.parent;
+        transform.parent = null;
         transform.localScale += new Vector3(count, count, count);
         transform.parent = parent;
         if (transform.localScale.x < startScale.x)
