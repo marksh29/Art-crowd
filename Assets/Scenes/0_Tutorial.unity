@@ -11763,6 +11763,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -3
       objectReference: {fileID: 0}
+    - target: {fileID: 4158697592939808153, guid: 1dd34b3923cafcf4f9a63661c2d055d3, type: 3}
+      propertyPath: m_YDamping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4240333046735684981, guid: 1dd34b3923cafcf4f9a63661c2d055d3, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -3
