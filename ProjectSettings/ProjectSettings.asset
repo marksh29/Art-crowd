@@ -239,7 +239,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 3
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: '{dedicated}: ArtCrowd/user.keystore'
+  AndroidKeystoreName: C:/Users/COMPLEX/Documents/KeyStore/Art Crowd/user.keystore
   AndroidKeyaliasName: artcrowd
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
