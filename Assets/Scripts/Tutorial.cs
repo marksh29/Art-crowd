@@ -35,14 +35,14 @@ public class Tutorial : MonoBehaviour
     {
         tutorPanel.SetActive(true);
         stageObj[stageID].SetActive(true);
-        swipeObj[stageID].SetActive(true);
+        //swipeObj[stageID].SetActive(true);
         stageTxt.text = stageText[stageID];
         path.speed = slowSpeed;
     }
     public void TutorialOff()
     {
         stageObj[stageID].SetActive(false);
-        swipeObj[stageID].SetActive(false);
+        //swipeObj[stageID].SetActive(false);
         stageID++;
         path.speed = normalSpeed;
         tutorPanel.SetActive(false);        

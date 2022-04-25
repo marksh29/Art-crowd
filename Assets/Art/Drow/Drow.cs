@@ -17,7 +17,7 @@ public class Drow : MonoBehaviour
             CleareLine();
             CreateLine();
         }
-        if (Input.GetMouseButton(0) && line.lineOn && (line.lineObj.Count < line.gameObj.Count))
+        if (Input.GetMouseButton(0) && line.lineOn && (line.lineObj.Count < line.gameObj.Count) && line.lineMove)
         {
             Vector2 tempFingerPos = cam.ScreenToWorldPoint(Input.mousePosition);
             if (Vector2.Distance(tempFingerPos, fingerPositions[fingerPositions.Count - 1]) > 0.1f)

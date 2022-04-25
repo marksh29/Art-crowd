@@ -12,7 +12,7 @@ public class Line : MonoBehaviour
     [SerializeField] float spawnDistance, spawnScale, addZ;
     float dist;
     public bool cleareLine, updatePosition;
-    [SerializeField] public bool lineOn;
+    [HideInInspector] public bool lineOn, lineMove;
     [SerializeField] GameObject tutor;
     [SerializeField] bool massCounter;
          
@@ -41,10 +41,11 @@ public class Line : MonoBehaviour
     {        
         if (Input.GetMouseButtonDown(0) && lineOn && (Controll.Instance._state == "Menu" || Controll.Instance._state == "Game"))
         {
+            lineMove = true;
             tutor.SetActive(false);           
             CleareLine();
         }
-        if (Input.GetMouseButton(0) && lineOn && (Controll.Instance._state == "Menu" || Controll.Instance._state == "Game"))
+        if (Input.GetMouseButton(0) && lineOn && (Controll.Instance._state == "Menu" || Controll.Instance._state == "Game") && lineMove)
         {           
             if (lineObj.Count < gameObj.Count && (lineObj.Count == 0 || dist >= spawnDistance))
             {
@@ -70,7 +71,8 @@ public class Line : MonoBehaviour
                 SetPos();
                 if (cleareLine)
                     CleareLine();
-            }        
+            }
+            lineMove = false;
         }
     }
    

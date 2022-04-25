@@ -45,7 +45,10 @@ public class PlayerControll : MonoBehaviour
         if (other.gameObject.tag == "Finish")
             Win();
         if (other.gameObject.tag == "Tutorial")
+        {
             Tutorial.Instance.TutorialOn();
+            other.gameObject.SetActive(false);
+        }            
     }
     public void Lose()
     {
