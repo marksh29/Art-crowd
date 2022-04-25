@@ -63,17 +63,5 @@ public class Controll : MonoBehaviour
         if (Application.loadedLevel != 0)
             PlayerPrefs.SetInt("level", PlayerPrefs.GetInt("level") + 1);
         SceneManager.LoadScene(Application.loadedLevel == Application.levelCount -1 ? 1 : (Application.loadedLevel + 1));
-    }
-    
-    public IEnumerator Win()
-    {
-        yield return new WaitForSeconds(2);
-        Set_state("Win");        
-    }  
-
-    public IEnumerator Lose()
-    {
-        yield return new WaitForSeconds(1);
-        Set_state("Lose");
-    }  
+    }   
 }
