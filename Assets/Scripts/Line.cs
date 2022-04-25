@@ -17,7 +17,7 @@ public class Line : MonoBehaviour
     [SerializeField] bool massCounter;
          
     private void Awake()
-    {
+    {        
         if (Instance == null) Instance = this;        
     }
     void Start()

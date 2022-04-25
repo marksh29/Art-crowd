@@ -17,6 +17,7 @@ public class Tutorial : MonoBehaviour
        
     private void Awake()
     {
+        PlayerPrefs.DeleteAll();
         if (Instance == null) Instance = this;
         if (PlayerPrefs.GetInt("Tutorial") == 1)
             Application.LoadLevel(PlayerPrefs.GetInt("curLevel"));
