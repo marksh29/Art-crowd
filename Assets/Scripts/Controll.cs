@@ -40,9 +40,7 @@ public class Controll : MonoBehaviour
         {          
             case ("Win"):
                 confeti.SetActive(true);                
-                Line.Instance.End(false);
-                if(Application.loadedLevel != 0)
-                    PlayerPrefs.SetInt("level", PlayerPrefs.GetInt("level") + 1);               
+                Line.Instance.End(false);                              
                 break;
             case ("Lose"):
                 loseConfeti.SetActive(true);
@@ -62,6 +60,8 @@ public class Controll : MonoBehaviour
     }
     public void Next_level()
     {
+        if (Application.loadedLevel != 0)
+            PlayerPrefs.SetInt("level", PlayerPrefs.GetInt("level") + 1);
         SceneManager.LoadScene(Application.loadedLevel == Application.levelCount -1 ? 1 : (Application.loadedLevel + 1));
     }
     
