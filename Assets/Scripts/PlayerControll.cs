@@ -44,6 +44,8 @@ public class PlayerControll : MonoBehaviour
     {
         if (other.gameObject.tag == "Finish")
             Win();
+        if (other.gameObject.tag == "Tutorial")
+            Tutorial.Instance.TutorialOn();
     }
     public void Lose()
     {
@@ -57,7 +59,7 @@ public class PlayerControll : MonoBehaviour
         Line.Instance.CleareLine();
         Controll.Instance.Set_state("End");
         Line.Instance.StartGame("stay");       
-        Gener.Instance.StartEnd(money - 1);
+        Gener.Instance.StartEnd(money);
         path.speed = 0;
     }
 }

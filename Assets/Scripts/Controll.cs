@@ -17,6 +17,7 @@ public class Controll : MonoBehaviour
     private void Awake()
     {
         if (Instance == null) Instance = this;
+        PlayerPrefs.SetInt("curLevel", Application.loadedLevel);
     }
     void Start()
     {
@@ -39,6 +40,7 @@ public class Controll : MonoBehaviour
                 confeti.SetActive(true);                
                 Line.Instance.End(false);
                 PlayerPrefs.SetInt("level", PlayerPrefs.GetInt("level") + 1);
+                PlayerPrefs.SetInt("Tutorial", 1);
                 break;
             case ("Lose"):
                 loseConfeti.SetActive(true);
@@ -58,7 +60,7 @@ public class Controll : MonoBehaviour
     }
     public void Next_level()
     {
-        SceneManager.LoadScene(Application.loadedLevel == Application.levelCount -1 ? 0 : (Application.loadedLevel + 1));
+        SceneManager.LoadScene(Application.loadedLevel == Application.levelCount -1 ? 1 : (Application.loadedLevel + 1));
     }
     
     public IEnumerator Win()

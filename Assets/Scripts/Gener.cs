@@ -72,7 +72,7 @@ public class Gener : MonoBehaviour
 
     IEnumerator End(int id)
     {
-        for (int i = 0; i < id - 1; i++)
+        for (int i = 0; i < id; i++)
         {
             list[i].SetActive(true);
             cam.Follow = list[i].transform;           

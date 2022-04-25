@@ -12,6 +12,7 @@ TagManager:
   - Money
   - CharacterBody
   - Mnoj
+  - Tutorial
   layers:
   - Default
   - TransparentFX
