@@ -24,7 +24,7 @@ MonoBehaviour:
   status: 1
   xfbml: 0
   frictionlessRequests: 1
-  androidKeystorePath: C:\Users\admin\.android\user.keystore
+  androidKeystorePath: C:\Users\admin\.android\art_crowd.keystore
   iosURLSuffix: 
   appLinkSchemes:
   - list: []
