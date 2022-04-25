@@ -14,6 +14,7 @@ public class Tutorial : MonoBehaviour
     [SerializeField] string[] stageText;
     [SerializeField] Text stageTxt;
     [SerializeField] PathFollower path;
+    bool on;
        
     private void Awake()
     {
@@ -33,6 +34,7 @@ public class Tutorial : MonoBehaviour
 
     public void TutorialOn()
     {
+        on = true;
         tutorPanel.SetActive(true);
         stageObj[stageID].SetActive(true);
         //swipeObj[stageID].SetActive(true);
@@ -41,10 +43,14 @@ public class Tutorial : MonoBehaviour
     }
     public void TutorialOff()
     {
-        stageObj[stageID].SetActive(false);
-        //swipeObj[stageID].SetActive(false);
-        stageID++;
-        path.speed = normalSpeed;
-        tutorPanel.SetActive(false);        
+        if(on)
+        {
+            stageObj[stageID].SetActive(false);
+            //swipeObj[stageID].SetActive(false);
+            stageID++;
+            path.speed = normalSpeed;
+            tutorPanel.SetActive(false);
+            on = false;
+        }               
     }
 }
