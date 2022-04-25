@@ -41,7 +41,8 @@ public class Controll : MonoBehaviour
             case ("Win"):
                 confeti.SetActive(true);                
                 Line.Instance.End(false);
-                PlayerPrefs.SetInt("level", PlayerPrefs.GetInt("level") + 1);               
+                if(Application.loadedLevel != 0)
+                    PlayerPrefs.SetInt("level", PlayerPrefs.GetInt("level") + 1);               
                 break;
             case ("Lose"):
                 loseConfeti.SetActive(true);
