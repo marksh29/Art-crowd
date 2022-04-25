@@ -18,6 +18,8 @@ public class Controll : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         PlayerPrefs.SetInt("curLevel", Application.loadedLevel);
+        if(Application.loadedLevel == 1)
+            PlayerPrefs.SetInt("Tutorial", 1);
     }
     void Start()
     {
@@ -39,8 +41,7 @@ public class Controll : MonoBehaviour
             case ("Win"):
                 confeti.SetActive(true);                
                 Line.Instance.End(false);
-                PlayerPrefs.SetInt("level", PlayerPrefs.GetInt("level") + 1);
-                PlayerPrefs.SetInt("Tutorial", 1);
+                PlayerPrefs.SetInt("level", PlayerPrefs.GetInt("level") + 1);               
                 break;
             case ("Lose"):
                 loseConfeti.SetActive(true);
