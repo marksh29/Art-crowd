@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     [SerializeField] TextMeshPro lifeText;
     [HideInInspector] public Vector3 targetPos;
     bool move;
+    Vector3 startScale;
     void Awake()
     {
         life = life == 0 ? 1 : life;
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour
         float scale = skin.GetBlendShapeWeight(0) - (addShape * (life - 1));
         skin.SetBlendShapeWeight(0, scale < 0 ? 0 : scale);
         AddScales(transform.parent, (addScale * (life - 1)));
+        startScale = transform.localScale;
     }
     private void Update()
     {
@@ -129,26 +131,30 @@ public class Player : MonoBehaviour
         int cnt = gate.SetGate();       
         life += cnt;
         float scale = skin.GetBlendShapeWeight(0) -(addShape * cnt);
-        skin.SetBlendShapeWeight(0, scale < 0 ? 0 : scale);
-        AddScales(transform.parent, addScale);
+        skin.SetBlendShapeWeight(0, scale < 0 ? 0 : scale);       
         Line.Instance.SetCount();
-        lifeText.text = life.ToString();
+        lifeText.text = life.ToString();       
+        AddScales(transform.parent, addScale);
     }
     void RemoveScale(Gate gate)
     {
         StartCoroutine(Effect(2));
         int cnt = life <= gate.count ? life -1 : Mathf.Abs(gate.SetGate());
-        life -= cnt;        
+        life -= cnt;
+        if (life <= 0)
+            Dead();
+        else
+        {
+            if (changeScaleForDamage)
+                AddScales(transform.parent, -addScale);
+        }
         float scale = skin.GetBlendShapeWeight(0) + (addShape * cnt);
-        skin.SetBlendShapeWeight(0, scale > 100 ? 100 : scale);
-        AddScales(transform.parent, -addScale);
-        lifeText.text = life.ToString();
+        skin.SetBlendShapeWeight(0, scale > 100 ? 100 : scale);             
+        lifeText.text = life.ToString();       
     }   
     public void Damage(Enem enemy)
     {
-        life -= enemy.Kill(life);
-        //life -= enemy.curLife;
-        //enemy.Kill(life);       
+        life -= enemy.Kill(life);    
         Line.Instance.SetCount();
         lifeText.text = life.ToString();
 
@@ -157,20 +163,24 @@ public class Player : MonoBehaviour
             float scale = skin.GetBlendShapeWeight(0) + addShape;
             skin.SetBlendShapeWeight(0, scale > 100 ? 100 : scale);
             AddScales(transform.parent, -addScale);
-        } 
-        
+        }         
         if (life <= 0)
         {
-            lifeText.transform.parent.gameObject.SetActive(false);
-            SetAnimation("fall");
-            end = true;            
-            transform.parent = null;
-            Line.Instance.RemoveObj(gameObject);
-            Destroy(gameObject, 3);
-            GameObject eff = Instantiate(deadEffect, new Vector3(transform.position.x, 1 ,transform.position.z), transform.rotation) as GameObject;
-            Destroy(eff, 1);
+            Dead();
         }
     }
+    void Dead()
+    {
+        lifeText.transform.parent.gameObject.SetActive(false);
+        SetAnimation("fall");
+        end = true;
+        transform.parent = null;
+        Line.Instance.RemoveObj(gameObject);
+        Destroy(gameObject, 3);
+        GameObject eff = Instantiate(deadEffect, new Vector3(transform.position.x, 1, transform.position.z), transform.rotation) as GameObject;
+        Destroy(eff, 1);
+    }
+
     public IEnumerator Effect(int id)
     {
         effect[id].SetActive(true);
@@ -182,14 +192,17 @@ public class Player : MonoBehaviour
         transform.parent = parent.parent;
         transform.localScale += new Vector3(count, count, count);
         transform.parent = parent;
+        if (transform.localScale.x < startScale.x)
+            transform.localScale = startScale;
     }
     public void Add(Transform pl)
-    {
+    {        
         skin.sharedMaterial = mat;
         gameObject.transform.localRotation = Quaternion.Euler(0, pl.localRotation.y, 0);
         gameObject.tag = "Untagged";
         SetAnimation("move");
         StartCoroutine(Effect(0));
+        startScale = transform.localScale;
     }
 
     public void SpawnNewMan(int id)
