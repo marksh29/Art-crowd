@@ -12,7 +12,7 @@ public class Line : MonoBehaviour
     [SerializeField] float spawnDistance, spawnScale, addZ;
     float dist;
     public bool cleareLine, updatePosition;
-    [HideInInspector] public bool lineOn, lineMove;
+    [SerializeField] public bool lineOn, lineMove;
     [SerializeField] GameObject tutor;
     [SerializeField] bool massCounter;
          
@@ -63,7 +63,7 @@ public class Line : MonoBehaviour
                 if (Tutorial.Instance != null)
                 {
                     Tutorial.Instance.TutorialOff();
-                    lineOn = false;
+                    //lineOn = false;
                 }
                 if(Controll.Instance._state == "Menu")
                     Controll.Instance.StartLevel();
