@@ -4158,7 +4158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   txt: {fileID: 2628348654086995012}
   count: 0
-  massCounter: 0
+  massCounter: 1
 --- !u!1 &2628348654008022034
 GameObject:
   m_ObjectHideFlags: 0
@@ -6123,7 +6123,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 64effa9d65538c74fb7ee82e73e0a235, type: 2}
+  - {fileID: 2100000, guid: 9f04b8193d7a0c74399a9340ba02b527, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -25,16 +25,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1539521151655074530}
-  m_LocalRotation: {x: 0, y: 0.9891316, z: -0, w: -0.14703259}
-  m_LocalPosition: {x: 0, y: 0, z: 4.24}
-  m_LocalScale: {x: 2.3389144, y: 2.3389144, z: 2.3389144}
+  m_LocalRotation: {x: -0, y: 0.9843202, z: -0, w: 0.17639077}
+  m_LocalPosition: {x: 0, y: 0, z: 4.3547897}
+  m_LocalScale: {x: 2.8, y: 2.8, z: 2.8}
   m_Children: []
   m_Father: {fileID: 7397348261853753747}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 196.91, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 159.681, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.99, y: 0.92}
+  m_AnchoredPosition: {x: -0.9169091, y: 0.63}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &8432905841322325459
@@ -395,14 +395,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7397348261430912937}
-  m_LocalRotation: {x: 0, y: -0.04797821, z: 0, w: 0.9988484}
-  m_LocalPosition: {x: -0.28, y: 3.591, z: -0.06}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalRotation: {x: -0, y: -0.27052566, z: -0, w: 0.9627128}
+  m_LocalPosition: {x: -0.027, y: 4.08, z: 0.57}
+  m_LocalScale: {x: 0.61796, y: 0.61796, z: 1.5449}
   m_Children:
   - {fileID: 7397348261357906137}
   m_Father: {fileID: 7397348262873187008}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -5.5, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -31.391, z: 0}
 --- !u!212 &7397348261430912939
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1042,7 +1042,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 64effa9d65538c74fb7ee82e73e0a235, type: 2}
+  - {fileID: 2100000, guid: 9f04b8193d7a0c74399a9340ba02b527, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1514,7 +1514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   txt: {fileID: 7397348261357906143}
   count: 0
-  massCounter: 0
+  massCounter: 1
 --- !u!1 &7397348262961093103
 GameObject:
   m_ObjectHideFlags: 0
