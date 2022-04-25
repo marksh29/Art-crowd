@@ -145,8 +145,7 @@ public class Player : MonoBehaviour
             Dead();
         else
         {
-            if (changeScaleForDamage)
-                AddScales(transform.parent, -addScale);
+            AddScales(transform.parent, -addScale);
         }
         float scale = skin.GetBlendShapeWeight(0) + (addShape * cnt);
         skin.SetBlendShapeWeight(0, scale > 100 ? 100 : scale);             
