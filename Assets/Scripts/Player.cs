@@ -210,7 +210,7 @@ public class Player : MonoBehaviour
         GameObject obj = Instantiate(gameObject, transform.parent) as GameObject;       
         Line.Instance.AddObj(obj);
         obj.GetComponent<Player>().Drop();
-        obj.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + 0.3f);        
+        obj.transform.localPosition = new Vector3(Random.Range(-1f, 1f), transform.localPosition.y, transform.localPosition.z + 0.3f);        
     }
     public void Drop()
     {
