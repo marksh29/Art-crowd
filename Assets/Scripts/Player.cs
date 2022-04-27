@@ -296,6 +296,7 @@ public class Player : MonoBehaviour
             skin.SetBlendShapeWeight(0, value);
             yield return null;
         }
+        yield return new WaitForSeconds(0.1f);
         if (!up)
             skin.SetBlendShapeWeight(0, skin.GetBlendShapeWeight(0) + extraShape);
         else
