@@ -35,6 +35,7 @@ namespace GameAnalyticsSDK.Events
 
         public void Start ()
         {
+            DontDestroyOnLoad(gameObject);
             StartCoroutine(SubmitFPSRoutine());
             StartCoroutine(CheckCriticalFPSRoutine());
         }
