@@ -17,7 +17,7 @@ public class GameAnalityc : MonoBehaviour
     void Start()
     {
         TinySauce.OnGameStarted();
-        New_event("Test Figet");
+        //New_event("Test Figet");
     }
     public void New_event(string name)
     {
