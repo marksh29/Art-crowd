@@ -231,7 +231,7 @@ public class Player : MonoBehaviour
         GameObject obj = Instantiate(gameObject, transform.parent) as GameObject;       
         Line.Instance.AddObj(obj);
         obj.GetComponent<Player>().Drop();
-        obj.transform.localPosition = new Vector3(Random.Range(-0.8f, 0.8f), transform.localPosition.y, transform.localPosition.z + 0.3f);        
+        obj.transform.localPosition = new Vector3(Random.Range(-0.3f, 0.3f), transform.localPosition.y, transform.localPosition.z + 0.3f);        
     }
     public void Drop()
     {
@@ -279,7 +279,7 @@ public class Player : MonoBehaviour
             transform.localScale = Vector3.Lerp(startScale, targetScale, fraction);
             yield return null;            
         }
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.015f);
         if(!up)
             transform.localScale -= new Vector3(extraScale / 9, extraScale, extraScale / 6.5f);
         else
@@ -296,7 +296,7 @@ public class Player : MonoBehaviour
             skin.SetBlendShapeWeight(0, value);
             yield return null;
         }
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.015f);
         if (!up)
             skin.SetBlendShapeWeight(0, skin.GetBlendShapeWeight(0) + extraShape);
         else
