@@ -20,7 +20,7 @@ public class Controll : MonoBehaviour
         PlayerPrefs.SetInt("curLevel", Application.loadedLevel);
         if(Application.loadedLevel == 1)
             PlayerPrefs.SetInt("Tutorial", 1);
-        GameAnalityc.Instance.Start_level((Application.loadedLevel + 1));
+        GameAnalityc.Instance?.Start_level((Application.loadedLevel + 1));
     }
     void Start()
     {

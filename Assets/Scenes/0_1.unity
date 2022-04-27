@@ -2490,7 +2490,7 @@ MonoBehaviour:
   - {fileID: 1450880236065381635}
   - {fileID: 1450880236306344345}
   - {fileID: 1988116128}
-  confeti: {fileID: 0}
+  confeti: {fileID: 9064740959155953665}
   loseConfeti: {fileID: 1006734292}
   leveltext: {fileID: 1439078401}
 --- !u!4 &932116403
@@ -10417,6 +10417,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1dd34b3923cafcf4f9a63661c2d055d3, type: 3}
+--- !u!1 &9064740959155953665 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8885818899308115491, guid: 1dd34b3923cafcf4f9a63661c2d055d3, type: 3}
+  m_PrefabInstance: {fileID: 9064740959155953664}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9064740959160580639
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] bool massCounter;
     void Start()
     {
-        count = transform.childCount -1;
+        count = transform.childCount -2;
         SetCount();
         txt.transform.parent.gameObject.SetActive(massCounter);
         for (int i = 2; i < transform.childCount; i++)
@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour
         count--;
         if (count <= 0)
         {
+            transform.GetChild(1).gameObject.SetActive(false);
+            txt.transform.parent.gameObject.SetActive(false);
             StartCoroutine(Off());           
         }            
     }
@@ -36,7 +38,6 @@ public class Enemy : MonoBehaviour
     }
     IEnumerator Off()
     {
-        txt.transform.parent.gameObject.SetActive(false);
         yield return new WaitForSeconds(2);
         gameObject.SetActive(false);
     }
