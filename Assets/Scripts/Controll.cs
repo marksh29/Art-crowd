@@ -20,6 +20,7 @@ public class Controll : MonoBehaviour
         PlayerPrefs.SetInt("curLevel", Application.loadedLevel);
         if(Application.loadedLevel == 1)
             PlayerPrefs.SetInt("Tutorial", 1);
+        GameAnalityc.Instance.Start_level((Application.loadedLevel + 1));
     }
     void Start()
     {
@@ -39,10 +40,12 @@ public class Controll : MonoBehaviour
         switch(_state)
         {          
             case ("Win"):
+                GameAnalityc.Instance.Win_level((Application.loadedLevel + 1));
                 confeti.SetActive(true);                
                 Line.Instance.End(false);                              
                 break;
             case ("Lose"):
+                GameAnalityc.Instance.Lose_level((Application.loadedLevel + 1));
                 loseConfeti.SetActive(true);
                 Line.Instance.End(false);
                 break;
