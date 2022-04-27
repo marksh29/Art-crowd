@@ -40,12 +40,12 @@ public class Controll : MonoBehaviour
         switch(_state)
         {          
             case ("Win"):
-                GameAnalityc.Instance.Win_level((Application.loadedLevel + 1));
+                GameAnalityc.Instance?.Win_level((Application.loadedLevel + 1));
                 confeti.SetActive(true);                
                 Line.Instance.End(false);                              
                 break;
             case ("Lose"):
-                GameAnalityc.Instance.Lose_level((Application.loadedLevel + 1));
+                GameAnalityc.Instance?.Lose_level((Application.loadedLevel + 1));
                 loseConfeti.SetActive(true);
                 Line.Instance.End(false);
                 break;
