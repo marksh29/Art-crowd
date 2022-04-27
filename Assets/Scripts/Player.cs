@@ -1,8 +1,10 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
 public class Player : MonoBehaviour
 {
     [SerializeField] float moveTime;
@@ -23,14 +25,19 @@ public class Player : MonoBehaviour
     [HideInInspector] public Vector3 targetPos;
     bool move;
     Vector3 startScale;
+
+    [SerializeField] float scaleTime;
+    float extraScale, extraShape;
     void Awake()
     {
         life = life == 0 ? 1 : life;
-
-        float scale = skin.GetBlendShapeWeight(0) - (addShape * (life - 1));
-        skin.SetBlendShapeWeight(0, scale < 0 ? 0 : scale);
-        //AddScales(transform.parent, (addScale * (life - 1)));
         startScale = transform.localScale;
+        extraScale = addScale / 2;
+        extraShape = addShape / 2;
+        addShape = addShape + extraShape;
+        addScale = addScale + extraScale;        
+        //float scale = skin.GetBlendShapeWeight(0) - (addShape * (life - 1));
+        //skin.SetBlendShapeWeight(0, scale < 0 ? 0 : scale);        
     }
     private void Update()
     {
@@ -77,7 +84,6 @@ public class Player : MonoBehaviour
             {
                 end = true;
                 SetAnimation("fall");
-                //StopCoroutine(corr);
                 gameObject.layer = 6;
                 GetComponent<Rigidbody>().isKinematic = false;
                 GetComponent<Rigidbody>().useGravity = true;
@@ -130,8 +136,10 @@ public class Player : MonoBehaviour
         StartCoroutine(Effect(1));
         int cnt = gate.SetGate();       
         life += cnt;
-        float scale = skin.GetBlendShapeWeight(0) -(addShape * cnt);
-        skin.SetBlendShapeWeight(0, scale < 0 ? 0 : scale);       
+
+        //float scale = skin.GetBlendShapeWeight(0) -(addShape);
+        //skin.SetBlendShapeWeight(0, scale < 0 ? 0 : scale);
+        
         Line.Instance.SetCount();
         lifeText.text = life.ToString();       
         AddScales(transform.parent, addScale);
@@ -147,8 +155,10 @@ public class Player : MonoBehaviour
         {
             AddScales(transform.parent, -addScale);
         }
-        float scale = skin.GetBlendShapeWeight(0) + (addShape * cnt);
-        skin.SetBlendShapeWeight(0, scale > 100 ? 100 : scale);             
+
+        //float scale = skin.GetBlendShapeWeight(0) + (addShape);
+        //skin.SetBlendShapeWeight(0, scale > 100 ? 100 : scale);   
+        
         lifeText.text = life.ToString();       
     }   
     public void Damage(Enem enemy)
@@ -162,8 +172,7 @@ public class Player : MonoBehaviour
             float scale = skin.GetBlendShapeWeight(0) + addShape;
             skin.SetBlendShapeWeight(0, scale > 100 ? 100 : scale);
             AddScales(transform.parent, -addScale);
-        } 
-        
+        }
         if (life <= 0)
         {
             Dead();
@@ -189,11 +198,23 @@ public class Player : MonoBehaviour
     }
     void AddScales(Transform parent, float count)
     {
-        transform.parent = null;
-        transform.localScale += new Vector3(count, count, count);
-        transform.parent = parent;
-        if (transform.localScale.x < startScale.x)
-            transform.localScale = startScale;
+        if (count > 0)
+        {
+            Shape(true);
+            StartCoroutine(ScaleCorut(new Vector3(transform.localScale.x + (addScale / 9), transform.localScale.y + addScale, transform.localScale.z + (addScale / 6.5f)), false));
+        }
+        else
+        {
+            Shape(false);
+            if (transform.localScale.y - addScale >= startScale.y)
+                StartCoroutine(ScaleCorut(new Vector3(transform.localScale.x - (addScale / 9), transform.localScale.y - addScale, transform.localScale.z - (addScale / 6.5f)), true));
+        }
+
+        //transform.parent = null;
+        //transform.localScale += new Vector3(count/9, count, count/6.5f);
+        //transform.parent = parent;
+        //if (transform.localScale.x < startScale.x)
+        //    transform.localScale = startScale;
     }
     public void Add(Transform pl)
     {        
@@ -210,7 +231,7 @@ public class Player : MonoBehaviour
         GameObject obj = Instantiate(gameObject, transform.parent) as GameObject;       
         Line.Instance.AddObj(obj);
         obj.GetComponent<Player>().Drop();
-        obj.transform.localPosition = new Vector3(Random.Range(-1f, 1f), transform.localPosition.y, transform.localPosition.z + 0.3f);        
+        obj.transform.localPosition = new Vector3(Random.Range(-0.8f, 0.8f), transform.localPosition.y, transform.localPosition.z + 0.3f);        
     }
     public void Drop()
     {
@@ -227,5 +248,57 @@ public class Player : MonoBehaviour
     {
         lifeText.transform.parent.gameObject.SetActive(id);
         lifeText.text = life.ToString();
+    }
+     
+    
+    void Shape(bool up)
+    {
+        switch(up)
+        {
+            case (true):
+                float scale = skin.GetBlendShapeWeight(0) -(addShape - extraShape);
+                StartCoroutine(LerpShape(scale < 0 ? 0 : scale, 1, false));
+                //skin.SetBlendShapeWeight(0, scale < 0 ? 0 : scale);
+                break;
+            case (false):
+                float scale1 = skin.GetBlendShapeWeight(0) + (addShape - extraShape);
+                StartCoroutine(LerpShape(scale1 > 100 ? 100 : scale1, 1, false));
+                //skin.SetBlendShapeWeight(0, scale1 > 100 ? 100 : scale1);  
+                break;
+        }
+    }
+
+    IEnumerator ScaleCorut(Vector3 targetScale, bool up)
+    {
+        Vector3 startScale = transform.localScale;
+        float startTime = Time.realtimeSinceStartup;
+        float fraction = 0f;
+        while (fraction < 1f)
+        {
+            fraction = Mathf.Clamp01((Time.realtimeSinceStartup - startTime) / scaleTime);
+            transform.localScale = Vector3.Lerp(startScale, targetScale, fraction);
+            yield return null;            
+        }
+        yield return new WaitForSeconds(0.1f);
+        if(!up)
+            transform.localScale -= new Vector3(extraScale / 9, extraScale, extraScale / 6.5f);
+        else
+            transform.localScale += new Vector3(extraScale / 9, extraScale, extraScale / 6.5f);
+    }
+    private IEnumerator LerpShape(float endValue, float duration, bool up)
+    {
+        float startValue = skin.GetBlendShapeWeight(0);
+        float elapsed = 0;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float value = Mathf.Lerp(startValue, endValue, elapsed / duration);
+            skin.SetBlendShapeWeight(0, value);
+            yield return null;
+        }
+        if (!up)
+            skin.SetBlendShapeWeight(0, skin.GetBlendShapeWeight(0) + extraShape);
+        else
+            skin.SetBlendShapeWeight(0, skin.GetBlendShapeWeight(0) - extraShape);
     }
 }

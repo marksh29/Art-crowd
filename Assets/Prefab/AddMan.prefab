@@ -190,7 +190,7 @@ MonoBehaviour:
   m_fontSize: 17
   m_fontSizeBase: 17
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 1
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -227,7 +227,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 0}
+  m_renderer: {fileID: 2604398521175582623}
   m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
@@ -1584,6 +1584,7 @@ MonoBehaviour:
   mat: {fileID: 2100000, guid: 4af6266f32afa8342858f94e9822ccde, type: 2}
   lifeText: {fileID: 2604398521175582622}
   targetPos: {x: 0, y: 0, z: 0}
+  scaleTime: 1
 --- !u!136 &2604398522722398882
 CapsuleCollider:
   m_ObjectHideFlags: 0

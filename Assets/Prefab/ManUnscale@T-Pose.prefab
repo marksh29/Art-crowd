@@ -1325,6 +1325,7 @@ MonoBehaviour:
   mat: {fileID: 2100000, guid: 4af6266f32afa8342858f94e9822ccde, type: 2}
   lifeText: {fileID: 7533539081237997778}
   targetPos: {x: 0, y: 0, z: 0}
+  scaleTime: 1
 --- !u!136 &7533539081576164541
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1599,7 +1600,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3
+  m_text: 30
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 92e25a85810b32b41b4aa28c8406cc9c, type: 2}
   m_sharedMaterial: {fileID: -2389445428250398982, guid: 92e25a85810b32b41b4aa28c8406cc9c, type: 2}
@@ -1626,10 +1627,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17
+  m_fontSize: 10.05
   m_fontSizeBase: 17
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 1
   m_fontSizeMax: 72
   m_fontStyle: 0
