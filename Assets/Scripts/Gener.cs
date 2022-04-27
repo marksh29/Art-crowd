@@ -80,8 +80,12 @@ public class Gener : MonoBehaviour
             yield return new WaitForSeconds(onTime);
         }
         confeti.SetActive(true);
-        Controll.Instance.Set_state("Win");        
-    }
 
+        if (end)
+        {
+            end = false;
+            Controll.Instance.Set_state("Win");
+        }           
+    }
 
 }

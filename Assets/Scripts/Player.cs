@@ -279,7 +279,7 @@ public class Player : MonoBehaviour
             transform.localScale = Vector3.Lerp(startScale, targetScale, fraction);
             yield return null;            
         }
-        yield return new WaitForSeconds(0.015f);
+        yield return new WaitForSeconds(0.2f);
         if(!up)
             transform.localScale -= new Vector3(extraScale / 9, extraScale, extraScale / 6.5f);
         else
@@ -296,7 +296,7 @@ public class Player : MonoBehaviour
             skin.SetBlendShapeWeight(0, value);
             yield return null;
         }
-        yield return new WaitForSeconds(0.015f);
+        yield return new WaitForSeconds(0.2f);
         if (!up)
             skin.SetBlendShapeWeight(0, skin.GetBlendShapeWeight(0) + extraShape);
         else
