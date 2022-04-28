@@ -209,12 +209,6 @@ public class Player : MonoBehaviour
             if (transform.localScale.y - addScale >= startScale.y)
                 StartCoroutine(ScaleCorut(new Vector3(transform.localScale.x - (addScale / 9), transform.localScale.y - addScale, transform.localScale.z - (addScale / 6.5f)), true));
         }
-
-        //transform.parent = null;
-        //transform.localScale += new Vector3(count/9, count, count/6.5f);
-        //transform.parent = parent;
-        //if (transform.localScale.x < startScale.x)
-        //    transform.localScale = startScale;
     }
     public void Add(Transform pl)
     {        
@@ -301,5 +295,14 @@ public class Player : MonoBehaviour
             skin.SetBlendShapeWeight(0, skin.GetBlendShapeWeight(0) + extraShape);
         else
             skin.SetBlendShapeWeight(0, skin.GetBlendShapeWeight(0) - extraShape);
+    }
+      
+    public void DropToNull()
+    {
+        life = 1;
+        skin.SetBlendShapeWeight(0, 100);
+        transform.localScale = startScale;    
+        lifeText.text = life.ToString();
+
     }
 }

@@ -61,6 +61,7 @@ public class GameAnalityc : MonoBehaviour
     public void Start_level(int id)
     {
         GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start, "Level " + id.ToString());
+        Debug.Log("Start_level");
     }
     public void Win_level(int id)
     {
