@@ -19,15 +19,15 @@ public class Controll : MonoBehaviour
         if (Instance == null) Instance = this;
         PlayerPrefs.SetInt("curLevel", Application.loadedLevel);
         if(Application.loadedLevel == 1)
-            PlayerPrefs.SetInt("Tutorial", 1);
-
+            PlayerPrefs.SetInt("Tutorial", 1);       
+    }
+    void Start()
+    {
         if (Application.loadedLevel == 0)
             GameAnalityc.Instance?.Start_level(0);
         else
             GameAnalityc.Instance?.Start_level((PlayerPrefs.GetInt("level") + 1));
-    }
-    void Start()
-    {
+
         leveltext.text = "LEVEL " + (PlayerPrefs.GetInt("level") + 1).ToString();
         PathPlacer.Instance.Off();
     }
@@ -44,14 +44,21 @@ public class Controll : MonoBehaviour
         {          
             case ("Win"):
                 print("win");
-                GameAnalityc.Instance?.Win_level((PlayerPrefs.GetInt("level") + 1));
+               
                 confeti.SetActive(true);                
-                Line.Instance.End(false);                              
+                Line.Instance.End(false);
+                if (Application.loadedLevel == 0)
+                    GameAnalityc.Instance?.Win_level(0);
+                else
+                    GameAnalityc.Instance?.Win_level((PlayerPrefs.GetInt("level") + 1));
                 break;
-            case ("Lose"):
-                GameAnalityc.Instance?.Lose_level((PlayerPrefs.GetInt("level") + 1));
+            case ("Lose"):               
                 loseConfeti.SetActive(true);
                 Line.Instance.End(false);
+                if (Application.loadedLevel == 0)
+                    GameAnalityc.Instance?.Lose_level(0);
+                else
+                    GameAnalityc.Instance?.Lose_level((PlayerPrefs.GetInt("level") + 1));
                 break;
         }
     } 
