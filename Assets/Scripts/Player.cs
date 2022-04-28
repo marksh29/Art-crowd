@@ -130,6 +130,7 @@ public class Player : MonoBehaviour
             if (coll.gameObject.tag == "DropScale")
             {
                 int ct = coll.gameObject.transform.parent.GetComponent<Gate>().SetGate();
+                StartCoroutine(Effect(1));
                 DropToNull();
             }
             if (coll.gameObject.tag == "Skin")

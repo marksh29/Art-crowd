@@ -18,19 +18,19 @@ public class Gate : MonoBehaviour
     public int SetGate()
     {
         if (oneShoot)
-            gate.SetActive(false);      
+            gameObject.SetActive(false);      
         return count;
     }
     public int SetSkinGate()
     {
         if (oneShoot)
-            gate.SetActive(false);
+            gameObject.SetActive(false);
         return skinID;
     }
     public int SetMoneyGate()
     {
         if (oneShoot)
-            gate.SetActive(false);
+            gameObject.SetActive(false);
         moneyPrefab.SetActive(true);
         return moneyCount;
     }
