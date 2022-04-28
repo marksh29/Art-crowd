@@ -21,7 +21,11 @@ public class Tutorial : MonoBehaviour
         //PlayerPrefs.DeleteAll();
         if (Instance == null) Instance = this;
         if (PlayerPrefs.GetInt("Tutorial") == 1)
+        {
             Application.LoadLevel(PlayerPrefs.GetInt("curLevel"));
+        }
+        else
+            GameAnalityc.Instance?.Start_level(0);        
     }
     void Start()
     {

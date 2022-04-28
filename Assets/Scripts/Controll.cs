@@ -23,11 +23,9 @@ public class Controll : MonoBehaviour
     }
     void Start()
     {
-        if (Application.loadedLevel == 0)
-            GameAnalityc.Instance?.Start_level(0);
-        else
+        if (Application.loadedLevel != 0)
             GameAnalityc.Instance?.Start_level((PlayerPrefs.GetInt("level") + 1));
-
+     
         leveltext.text = "LEVEL " + (PlayerPrefs.GetInt("level") + 1).ToString();
         PathPlacer.Instance.Off();
     }
@@ -43,8 +41,6 @@ public class Controll : MonoBehaviour
         switch(_state)
         {          
             case ("Win"):
-                print("win");
-               
                 confeti.SetActive(true);                
                 Line.Instance.End(false);
                 if (Application.loadedLevel == 0)
