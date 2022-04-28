@@ -20,13 +20,16 @@ public class Controll : MonoBehaviour
         PlayerPrefs.SetInt("curLevel", Application.loadedLevel);
         if(Application.loadedLevel == 1)
             PlayerPrefs.SetInt("Tutorial", 1);
-        GameAnalityc.Instance?.Start_level((PlayerPrefs.GetInt("level") + 1));
+
+        if (Application.loadedLevel == 0)
+            GameAnalityc.Instance?.Start_level(0);
+        else
+            GameAnalityc.Instance?.Start_level((PlayerPrefs.GetInt("level") + 1));
     }
     void Start()
     {
         leveltext.text = "LEVEL " + (PlayerPrefs.GetInt("level") + 1).ToString();
         PathPlacer.Instance.Off();
-        //Set_state("Game");
     }
   
     public void Set_state(string name)
