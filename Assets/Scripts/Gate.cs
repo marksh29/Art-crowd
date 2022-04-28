@@ -32,6 +32,8 @@ public class Gate : MonoBehaviour
         if (oneShoot)
             gameObject.SetActive(false);
         moneyPrefab.SetActive(true);
+        moneyPrefab.transform.parent = null;
+        Destroy(moneyPrefab, 1);
         return moneyCount;
     }
 }
