@@ -1163,8 +1163,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveTime: 5
   life: 1
-  addScale: 0.1
-  addShape: 25
+  startScales: 0.1
+  startShapes: 25
   anim: {fileID: 7383008209090388504}
   skin: {fileID: 0}
   effect:
@@ -1178,7 +1178,6 @@ MonoBehaviour:
   changeScaleForDamage: 0
   deadEffect: {fileID: 586943817369635531, guid: 42052565dc7c1344dafa92c52ca458d7, type: 3}
   goldEffect: {fileID: 8395458933974653378, guid: eeca455c0e1aa2c4c96f3ff21bde1a75, type: 3}
-  mat: {fileID: 2100000, guid: 4af6266f32afa8342858f94e9822ccde, type: 2}
   lifeText: {fileID: 3971932362639973346}
   targetPos: {x: 0, y: 0, z: 0}
   scaleTime: 1

@@ -11,15 +11,14 @@ public class Player : MonoBehaviour
     public int life;
     Vector3 targetPosition;
     IEnumerator corr;
-
-    [SerializeField] float addScale, addShape;
+    [SerializeField] float startScales, startShapes;
+    float addScale, addShape;
     [SerializeField] Animator anim;
     [SerializeField] SkinnedMeshRenderer skin;
     [SerializeField] GameObject[] effect, manPrefab;
     [SerializeField] bool changeScaleForDamage;
     bool end;
     [SerializeField] GameObject deadEffect, goldEffect;
-    [SerializeField] Material mat;
 
     [SerializeField] TextMeshPro lifeText;
     [HideInInspector] public Vector3 targetPos;
@@ -32,14 +31,19 @@ public class Player : MonoBehaviour
     {
         life = life == 0 ? 1 : life;
         startScale = transform.localScale;
-        extraScale = addScale / 2;
-        extraShape = addShape / 2;
-        //addShape = addShape + extraShape;
-        //addScale = addScale + extraScale;    
+        SetPatamtr();
         
         //float scale = skin.GetBlendShapeWeight(0) - (addShape * (life - 1));
         //skin.SetBlendShapeWeight(0, scale < 0 ? 0 : scale);        
     }
+    void SetPatamtr()
+    {
+        extraScale = startScales / 2;
+        extraShape = startShapes / 2;
+        addShape = startShapes + extraShape;
+        addScale = startScales + extraScale;
+    }
+
     private void Update()
     {
         if(move)
