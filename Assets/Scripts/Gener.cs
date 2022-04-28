@@ -22,20 +22,24 @@ public class Gener : MonoBehaviour
     {
         GameObject[] mon = GameObject.FindGameObjectsWithTag("Money");
         GameObject[] en = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] gate = GameObject.FindGameObjectsWithTag("MoneyGate");
 
         count = mon.Length;
         for (int i = 0; i < en.Length; i++)
         {
             count += en[i].GetComponent<Enem>().life;
-        }        
-
+        }
+        for (int i = 0; i < gate.Length; i++)
+        {
+            count += gate[i].transform.parent.gameObject.GetComponent<Gate>().moneyCount;
+        }
         for (int i = 0; i < count; i++)
         {
             GameObject sp = Instantiate(obj, list[0].transform.parent) as GameObject;
             sp.transform.localPosition = new Vector3(list[0].transform.localPosition.x, list[i].transform.localPosition.y + yy, list[0].transform.localPosition.z);
             list.Add(sp);
             sp.SetActive(false);
-        }
+        }       
     }
     void Update()
     {

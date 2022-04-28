@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField] float addScale, addShape;
     [SerializeField] Animator anim;
     [SerializeField] SkinnedMeshRenderer skin;
-    [SerializeField] GameObject[] effect;
+    [SerializeField] GameObject[] effect, manPrefab;
     [SerializeField] bool changeScaleForDamage;
     bool end;
     [SerializeField] GameObject deadEffect, goldEffect;
@@ -34,8 +34,9 @@ public class Player : MonoBehaviour
         startScale = transform.localScale;
         extraScale = addScale / 2;
         extraShape = addShape / 2;
-        addShape = addShape + extraShape;
-        addScale = addScale + extraScale;        
+        //addShape = addShape + extraShape;
+        //addScale = addScale + extraScale;    
+        
         //float scale = skin.GetBlendShapeWeight(0) - (addShape * (life - 1));
         //skin.SetBlendShapeWeight(0, scale < 0 ? 0 : scale);        
     }
@@ -102,19 +103,17 @@ public class Player : MonoBehaviour
                 Line.Instance.RemoveObj(gameObject);
                 Destroy(gameObject, 3);
             }
-
-            if (coll.gameObject.tag == "Add")
-            {                
-                Line.Instance.AddObj(coll.gameObject);
-                coll.gameObject.transform.parent = transform.parent;
-                coll.gameObject.GetComponent<Player>().Add(gameObject.transform);
-            }
+            //if (coll.gameObject.tag == "Add")
+            //{                
+            //    Line.Instance.AddObj(coll.gameObject);
+            //    coll.gameObject.transform.parent = transform.parent;
+            //    coll.gameObject.GetComponent<Player>().Add(gameObject.transform);               
+            //}
             if (coll.gameObject.tag == "Money")
             {
                 GameObject eff = Instantiate(goldEffect, coll.gameObject.transform.position, transform.rotation) as GameObject;
                 Destroy(eff, 1);
                 UIcoin.Instance.MoveOn(coll.gameObject.transform, 1);
-                //PlayerControll.Instance.AddMoney();
                 coll.gameObject.SetActive(false);
             }
             if (coll.gameObject.tag == "Boost")
@@ -127,6 +126,20 @@ public class Player : MonoBehaviour
             if (coll.gameObject.tag == "Mnoj")
             {
                 SpawnNewMan(coll.gameObject.transform.parent.gameObject.GetComponent<Gate>().SetGate());               
+            }
+            if (coll.gameObject.tag == "DropScale")
+            {
+                int ct = coll.gameObject.transform.parent.GetComponent<Gate>().SetGate();
+                DropToNull();
+            }
+            if (coll.gameObject.tag == "Skin")
+            {
+                ChangeMan(coll.gameObject.transform.parent.GetComponent<Gate>().SetSkinGate());
+            }
+            if (coll.gameObject.tag == "MoneyGate")
+            {
+                ChangeMan(coll.gameObject.transform.parent.GetComponent<Gate>().skinID);
+                UIcoin.Instance.MoveOn(coll.gameObject.transform, coll.gameObject.transform.parent.GetComponent<Gate>().SetMoneyGate());
             }
         }       
     }
@@ -212,14 +225,12 @@ public class Player : MonoBehaviour
     }
     public void Add(Transform pl)
     {        
-        skin.sharedMaterial = mat;
         gameObject.transform.localRotation = Quaternion.Euler(0, pl.localRotation.y, 0);
         gameObject.tag = "Untagged";
-        SetAnimation("move");
-        StartCoroutine(Effect(0));
+        SetAnimation("move");        
         startScale = transform.localScale;
+        StartCoroutine(Effect(0));
     }
-
     public void SpawnNewMan(int id)
     {
         GameObject obj = Instantiate(gameObject, transform.parent) as GameObject;       
@@ -230,7 +241,8 @@ public class Player : MonoBehaviour
     public void Drop()
     {
         life = 1;
-        skin.SetBlendShapeWeight(0, 100);
+        if(skin != null)
+            skin.SetBlendShapeWeight(0, 100);
         transform.localScale = new Vector3(0.077f, 0.7f, 0.1f);
         SetAnimation("move");
         Line.Instance.SetCount();
@@ -243,23 +255,23 @@ public class Player : MonoBehaviour
         lifeText.transform.parent.gameObject.SetActive(id);
         lifeText.text = life.ToString();
     }
-     
-    
+
     void Shape(bool up)
     {
-        switch(up)
+        if(skin != null)
         {
-            case (true):
-                float scale = skin.GetBlendShapeWeight(0) -(addShape - extraShape);
-                StartCoroutine(LerpShape(scale < 0 ? 0 : scale, 1, false));
-                //skin.SetBlendShapeWeight(0, scale < 0 ? 0 : scale);
-                break;
-            case (false):
-                float scale1 = skin.GetBlendShapeWeight(0) + (addShape - extraShape);
-                StartCoroutine(LerpShape(scale1 > 100 ? 100 : scale1, 1, false));
-                //skin.SetBlendShapeWeight(0, scale1 > 100 ? 100 : scale1);  
-                break;
-        }
+            switch (up)
+            {
+                case (true):
+                    float scale = skin.GetBlendShapeWeight(0) - (addShape - extraShape);
+                    StartCoroutine(LerpShape(scale < 0 ? 0 : scale, 1, false));
+                    break;
+                case (false):
+                    float scale1 = skin.GetBlendShapeWeight(0) + (addShape - extraShape);
+                    StartCoroutine(LerpShape(scale1 > 100 ? 100 : scale1, 1, false));
+                    break;
+            }
+        }      
     }
 
     IEnumerator ScaleCorut(Vector3 targetScale, bool up)
@@ -296,13 +308,25 @@ public class Player : MonoBehaviour
         else
             skin.SetBlendShapeWeight(0, skin.GetBlendShapeWeight(0) - extraShape);
     }
-      
+         
     public void DropToNull()
     {
         life = 1;
-        skin.SetBlendShapeWeight(0, 100);
-        transform.localScale = startScale;    
+        StartCoroutine(ScaleCorut(startScale, true));
+        if(skin != null)
+            StartCoroutine(LerpShape(100, 1, true));
         lifeText.text = life.ToString();
-
+        SetAnimation("move");
+    }
+    public void ChangeMan(int id)
+    {
+        GameObject obj = Instantiate(manPrefab[id], transform.parent) as GameObject;
+        obj.transform.localScale = startScale;
+        obj.transform.localPosition = transform.localPosition;
+        obj.transform.localRotation = transform.localRotation;
+        Line.Instance.AddObj(obj);
+        obj.GetComponent<Player>().Add(gameObject.transform);
+        Line.Instance.RemoveObj(gameObject);
+        Destroy(gameObject);
     }
 }

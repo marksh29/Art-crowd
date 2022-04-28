@@ -13,6 +13,9 @@ TagManager:
   - CharacterBody
   - Mnoj
   - Tutorial
+  - Skin
+  - MoneyGate
+  - DropScale
   layers:
   - Default
   - TransparentFX
