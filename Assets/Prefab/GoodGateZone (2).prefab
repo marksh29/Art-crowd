@@ -251,7 +251,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oneShoot: 0
   count: 2
+  skinID: 0
+  moneyCount: 0
   gate: {fileID: 4408938189531328804}
+  moneyPrefab: {fileID: 0}
 --- !u!1 &4408938189463188719
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,15 +705,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19852780, guid: dff0fd5524b08754e9e2b68478c827b3, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 19852780, guid: dff0fd5524b08754e9e2b68478c827b3, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19852780, guid: dff0fd5524b08754e9e2b68478c827b3, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.69803923
+      objectReference: {fileID: 0}
+    - target: {fileID: 19852780, guid: dff0fd5524b08754e9e2b68478c827b3, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.18798423
+      value: 0.28627452
       objectReference: {fileID: 0}
     - target: {fileID: 19852780, guid: dff0fd5524b08754e9e2b68478c827b3, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.ctime1
@@ -719,6 +722,18 @@ PrefabInstance:
     - target: {fileID: 19853942, guid: dff0fd5524b08754e9e2b68478c827b3, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19853942, guid: dff0fd5524b08754e9e2b68478c827b3, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19853942, guid: dff0fd5524b08754e9e2b68478c827b3, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.69803923
+      objectReference: {fileID: 0}
+    - target: {fileID: 19853942, guid: dff0fd5524b08754e9e2b68478c827b3, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.28627452
       objectReference: {fileID: 0}
     - target: {fileID: 19911190, guid: dff0fd5524b08754e9e2b68478c827b3, type: 3}
       propertyPath: m_SortingOrder
